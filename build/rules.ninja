@@ -6,7 +6,7 @@
 # It is included in the main 'build.ninja'.
 
 # =============================================================================
-# Project: esp
+# Project: opensecm
 # Configuration: 
 # =============================================================================
 # =============================================================================
@@ -22,7 +22,7 @@ rule CUSTOM_COMMAND
 #############################################
 # Rule for compiling C files.
 
-rule C_COMPILER__esp.2eelf
+rule C_COMPILER__opensecm.2eelf
   depfile = $DEP_FILE
   deps = gcc
   command = /home/marco/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out   -c $in
@@ -32,7 +32,7 @@ rule C_COMPILER__esp.2eelf
 #############################################
 # Rule for linking CXX executable.
 
-rule CXX_EXECUTABLE_LINKER__esp.2eelf
+rule CXX_EXECUTABLE_LINKER__opensecm.2eelf
   command = $PRE_LINK && /home/marco/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-g++  $FLAGS  $LINK_FLAGS $in  -o $TARGET_FILE $LINK_PATH $LINK_LIBRARIES && $POST_BUILD
   description = Linking CXX executable $TARGET_FILE
   restat = $RESTAT
@@ -1403,7 +1403,7 @@ rule CXX_STATIC_LIBRARY_LINKER____idf_cmd_system
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /usr/bin/cmake -S/home/marco/esp/ecm -B/home/marco/esp/ecm/build
+  command = /usr/bin/cmake -S/home/marco/esp/opens-ecu -B/home/marco/esp/opens-ecu/build
   description = Re-running CMake...
   generator = 1
 

@@ -1,4 +1,4 @@
-# Install script for directory: /home/marco/esp/ecm/components/cmd_nvs
+# Install script for directory: /home/marco/esp/opens-ecu/components/cmd_nvs
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

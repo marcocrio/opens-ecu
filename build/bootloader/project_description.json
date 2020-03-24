@@ -1,8 +1,8 @@
 {
     "project_name":       "bootloader",
     "project_path":       "/home/marco/esp/esp-idf/components/bootloader/subproject",
-    "build_dir":          "/home/marco/esp/ecm/build/bootloader",
-    "config_file":        "/home/marco/esp/ecm/sdkconfig",
+    "build_dir":          "/home/marco/esp/opens-ecu/build/bootloader",
+    "config_file":        "/home/marco/esp/opens-ecu/sdkconfig",
     "config_defaults":    "",
     "app_elf":            "bootloader.elf",
     "app_bin":            "bootloader.bin",

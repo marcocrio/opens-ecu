@@ -1,4 +1,4 @@
-# Install script for directory: /home/marco/esp/ecm
+# Install script for directory: /home/marco/esp/opens-ecu
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,7 +34,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/marco/esp/ecm/build/esp-idf/cmake_install.cmake")
+  include("/home/marco/esp/opens-ecu/build/esp-idf/cmake_install.cmake")
 
 endif()
 
@@ -46,5 +46,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/marco/esp/ecm/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/marco/esp/opens-ecu/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

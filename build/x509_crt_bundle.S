@@ -1,4 +1,4 @@
-/* * Data converted from /home/marco/esp/ecm/build/esp-idf/mbedtls/x509_crt_bundle
+/* * Data converted from /home/marco/esp/opens-ecu/build/esp-idf/mbedtls/x509_crt_bundle
  */
 .data
 .section .rodata.embedded

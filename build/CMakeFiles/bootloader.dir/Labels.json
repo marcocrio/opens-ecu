@@ -2,34 +2,34 @@
 	"sources" : 
 	[
 		{
-			"file" : "/home/marco/esp/ecm/build/CMakeFiles/bootloader"
+			"file" : "/home/marco/esp/opens-ecu/build/CMakeFiles/bootloader"
 		},
 		{
-			"file" : "/home/marco/esp/ecm/build/CMakeFiles/bootloader.rule"
+			"file" : "/home/marco/esp/opens-ecu/build/CMakeFiles/bootloader.rule"
 		},
 		{
-			"file" : "/home/marco/esp/ecm/build/CMakeFiles/bootloader-complete.rule"
+			"file" : "/home/marco/esp/opens-ecu/build/CMakeFiles/bootloader-complete.rule"
 		},
 		{
-			"file" : "/home/marco/esp/ecm/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule"
+			"file" : "/home/marco/esp/opens-ecu/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule"
 		},
 		{
-			"file" : "/home/marco/esp/ecm/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule"
+			"file" : "/home/marco/esp/opens-ecu/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule"
 		},
 		{
-			"file" : "/home/marco/esp/ecm/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule"
+			"file" : "/home/marco/esp/opens-ecu/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule"
 		},
 		{
-			"file" : "/home/marco/esp/ecm/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule"
+			"file" : "/home/marco/esp/opens-ecu/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule"
 		},
 		{
-			"file" : "/home/marco/esp/ecm/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule"
+			"file" : "/home/marco/esp/opens-ecu/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule"
 		},
 		{
-			"file" : "/home/marco/esp/ecm/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule"
+			"file" : "/home/marco/esp/opens-ecu/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule"
 		},
 		{
-			"file" : "/home/marco/esp/ecm/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule"
+			"file" : "/home/marco/esp/opens-ecu/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule"
 		}
 	],
 	"target" : 

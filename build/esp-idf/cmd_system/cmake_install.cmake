@@ -1,4 +1,4 @@
-# Install script for directory: /home/marco/esp/ecm/components/cmd_system
+# Install script for directory: /home/marco/esp/opens-ecu/components/cmd_system
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
