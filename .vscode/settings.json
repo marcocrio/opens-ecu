@@ -3,6 +3,6 @@
     "files.associations": {
         "includes.h": "c"
     },
-    "C_Cpp.errorSquiggles": "Enabled"
+    "C_Cpp.errorSquiggles": "Disabled"
     
 }
