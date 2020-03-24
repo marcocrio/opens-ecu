@@ -20,18 +20,18 @@ It contains relevant features for the project such as:
 It is programed and flashed in C/C++ from a Debian based Linux distribution using Espressif's SDK and framework [ESP-IDF](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/)
 In order to compile the project the ESP-IDF Toolchain and build tools are required. more information can be found in the [Get Started](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/) guide.
 
-**Project preparation:** 
+### Project preparation: 
 -----------------------
 Before compiling the project and after the succesful installation of Espressif's toolkit please follow the following steps.
 
-* open the terminal and navegate to your project's main direcotry
-* run `idf.py fullclean`
-* after full clean command has finished, run `idf.py menuconfig`
-* upon running *menuconfig* command, a menu is going to open on the terminal.
+* Open the terminal and navegate to your project's main direcotry
+* Run `idf.py fullclean`
+* After full clean command has finished, run `idf.py menuconfig`
+* Upon running *menuconfig* command, a menu is going to open on the terminal.
   Navegate it with the up/down keys and go to "Partition Table --->" and press enter
-*  make sure the name under *Custom partition CSV file* matches the name of the partition table file in the root directory of the project. (partitions.csv in this case).
+* Make sure the name under *Custom partition CSV file* matches the name of the partition table file in the root directory of the project. (partitions.csv in this case).
 * Save sdkconfig file by pressing *S* and quit the menu by pressing *Q*
-* lastly run  `idf.py build` to compile the project and `idf.py flash` to flash it into the ESP32
+* Lastly run  `idf.py build` to compile the project and/or `idf.py flash` to compile and flash it into the ESP32
 ---------
 
 # Features
