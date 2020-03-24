@@ -13,7 +13,7 @@
 
 
 
-static const char* FS = "FATFS";
+const char* FS = "FATFS";
 
 
 //---------------------- FATFS ---------------------//

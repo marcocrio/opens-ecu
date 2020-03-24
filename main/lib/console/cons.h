@@ -5,7 +5,7 @@ extern "C" {
 #endif
 
 
-
+extern const char *FS;
 
 // Register WiFi functions
 void consoleRun(void);

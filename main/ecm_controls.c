@@ -14,8 +14,12 @@
 #include "cmd_decl.h" // register commands for console
 
 
-// //SPIFFS
+//SPIFFS
 #include "lib/spiffsVFS/spiffsVFS.h" //mounts spiffs partition
+
+
+//peripherals
+#include "lib/peripherals/perinit.h"
 
 
 
@@ -27,12 +31,11 @@
 
     static const char *SYS = "SYSTEM";
     // static const char *SNTP = "SNTP";
-    static const char* FS = "FATFS";
 
 
 //-----------------Constans-----------------// 
 
-    const float Vengine= 0.63; //VE Engine Constant
+    const float Vengine= 0.63; //VE Engine Constant (L) 
     const float UniGas= 0.28705; //Universal Gas Constant
     const int cylinder= 1; // **pending change to cylynders
     const float staticFlow= 10; // 10g/ms from Injector Datasheet
@@ -78,7 +81,7 @@ void app_main(void)
     
 //----------------------- Boot count ------------------------//
     
-    ESP_LOGE(SYS, "----------------------------------------------\n\n");
+    printf("\n\n");
     ESP_LOGE(SYS, "ECM has booted up");
     ++boot_count;
     ESP_LOGI(SYS, "Boot count: %d\n\n", boot_count);
@@ -116,6 +119,7 @@ void app_main(void)
     esp_console_register_help_command();
     // register_system();
     register_file();
+
 
     consoleRun();
 

@@ -27,5 +27,27 @@
 #include "cmd_decl.h"
 
 
+//-----------------Constans-----------------// 
+
+    extern const float Vengine; //VE Engine Constant ()
+    extern const float UniGas; //Universal Gas Constant
+    extern const int cylinder; // **pending change to cylynders
+    extern const float staticFlow; // 10g/ms from Injector Datasheet
+    extern const float openTime;//The time in takes for the injector to be fully opened
 
 
+//-----------------Sensors------------------//
+    extern int TPS; //TPS adc readgins 
+    extern float IAT; //Air temperature in kelvin
+    extern float TPSV;//TPS Voltage
+    extern float pressure; //Barometric Pressure (hPa)
+    extern float airmass, fuelmass, RPM, TPS_Percentage;
+    extern float ckpPWM; //Ckp teeth PWM;
+    extern float airmass; 
+    extern float afr; //airfuel ratio (**needs to be improved, get from tables from book)  
+
+    //Fuel Injector
+    extern float freq;
+    extern float injDuty;
+    extern float injPulseTime;
+    extern float injCycle;
