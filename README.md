@@ -1,5 +1,19 @@
 # Open Source Electronic Control Module
 
-Senior project implementation of an Electronic Control Module focused on the Fuel Management System of a small one cylinder EFI engine developed by EE & ECE students of The University of Texas at El Paso. 
+This a Senior project implementation of an Electronic Control Module focused on the Fuel Management System of a small one cylinder EFI engine developed by EE & ECE students of The University of Texas at El Paso. 
 
-It is an open source Electronic Control Unit focused on the Fuel Management System of a small 1 cylinder EFI engine (Honda GX35 Engine) based on the "Honda GX35 Engine Fuel Injection kit" sold by [ecotrons.com](https://www.ecotrons.com/small_engine_fuel_injection_kit/honda_gx35_engine_fuel_injection_kit/) and its sensors included in its kit.
+This project is an open source Electronic Control Unit focused on the Fuel Management System of a small (35.8cc) 1 cylinder 4 strokes Electronically Fuel Injected engine (Honda GX35) based on the "Honda GX35 Engine Fuel Injection kit" sold by [ecotrons.com](https://www.ecotrons.com/small_engine_fuel_injection_kit/honda_gx35_engine_fuel_injection_kit/) and its sensors included in its kit.
+
+### Hardware and SDK
+The ECU features a Xtensa ® dual-core 32-bit LX6 microprocessor [spressif's ESP32-S2-WROOM-32D](https://www.espressif.com/en/products/hardware/esp32/overview) development board microcontroeller as the main control system for the Fuel Injection System as well as the rest of the functionalities of the ECU.
+
+It contains useful features such as:
+34 × programmable GPIOs
+- 12-bit SAR ADC up to 18 channels
+- 2 × 8-bit DAC
+- CAN 2.0
+- Motor PWM
+- LED PWM up to 16 channels
+- Hall sensor
+
+It is programed and flashed in C/C++ using Espressif's SDK and framework [ESP-IDF](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/)
