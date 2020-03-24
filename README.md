@@ -9,20 +9,11 @@ The ECU features a Xtensa ® dual-core 32-bit LX6 microprocessor [spressif's ESP
 
 It contains useful features such as:
 34 × programmable GPIOs
-• 12-bit SAR ADC up to 18 channels
-• 2 × 8-bit DAC
-• 10 × touch sensors
-• 4 × SPI
-• 2 × I2S
-• 2 × I2C
-• 3 × UART
-• 1 host (SD/eMMC/SDIO)
-• 1 slave (SDIO/SPI)
-• Ethernet MAC interface with dedicated DMA and IEEE 1588 support
-• CAN 2.0
-• IR (TX/RX)
-• Motor PWM
-• LED PWM up to 16 channels
-• Hall sensor
+- 12-bit SAR ADC up to 18 channels
+- 2 × 8-bit DAC
+- CAN 2.0
+- Motor PWM
+- LED PWM up to 16 channels
+- Hall sensor
 
 It is programed and flashed in C/C++ using Espressif's SDK and framework [ESP-IDF](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/)
