@@ -23,7 +23,7 @@ The development board contains relevant features for the project such as:
 It is programed and flashed in C/C++ from a Debian based Linux distribution using Espressif's SDK and framework [ESP-IDF](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/)
 In order to compile the project the ESP-IDF Toolchain and build tools are required. more information can be found in the [Get Started](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/) guide.
 
-The ESP32 runs on a FreeRTOS operating system that includes lwIP for OS functionality implementation such as task register and unregister, load distribution, semaphores, interrupt service routines, etc.
+The ESP32 runs on a FreeRTOS operating system whith lwIP for OS functionality implementation such as task registration, load distribution, semaphores, interrupt service routines, etc.
 
 
 Project preparation:
