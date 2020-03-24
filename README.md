@@ -6,4 +6,5 @@ This project is an open source Electronic Control Unit focused on the Fuel Manag
 
 ### Hardware and SDK
 The ECU uses [spressif's ESP32-S2-WROOM-32D](https://www.espressif.com/en/products/hardware/esp32/overview) development board microcontroeller as the main control system for the Fuel Injection System as well as the rest of the functionalities of the ECU.
+
 It is programed and flashed in C/C++ using Espressif's SDK and framework [ESP-IDF](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/)
