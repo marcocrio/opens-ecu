@@ -29,7 +29,7 @@ The ESP32 runs on a FreeRTOS operating system whith lwIP for OS functionality im
 Project preparation:
 ---
 
-Before compiling the project and after the succesful installation of Espressif's toolkit please follow the following steps.
+Before compiling the project and after the succesful installation of [Espressif's toolkit](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/) please follow the next steps.
 
 * Open the terminal and navegate to your project's main direcotry
 * Run `idf.py fullclean`
