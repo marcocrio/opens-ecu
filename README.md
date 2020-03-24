@@ -23,7 +23,8 @@ In order to compile the project the ESP-IDF Toolchain and build tools are requir
 **Project preparation:** 
 -----------------------
 Before compiling the project and after the succesful installation of Espressif's toolkit please follow the following steps.
-* open the terminal and navegate to your projects main direcotry
+
+...* open the terminal and navegate to your projects main direcotry
 
 * run `idf.py fullclean`
 
@@ -36,6 +37,6 @@ Before compiling the project and after the succesful installation of Espressif's
 * Save sdkconfig file by pressing *S* and quit the menu by pressing *Q*
 
 * lastly run  `idf.py build` to compile the project and `idf.py flash` to flash it into the ESP32
-------------------------------
+---------
 
 # Features
