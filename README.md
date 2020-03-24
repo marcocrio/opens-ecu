@@ -21,5 +21,4 @@ In order to compile the project the ESP-IDF Toolchain and build tools are requir
 Specific instructions for downloading, compiling, builing and flashing can be found on the section <insert section>
 
 
-
 # Features
