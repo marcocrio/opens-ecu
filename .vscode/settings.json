@@ -1,0 +1,8 @@
+{
+    "cmake.configureOnOpen": false,
+    "files.associations": {
+        "includes.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "Enabled"
+    
+}
