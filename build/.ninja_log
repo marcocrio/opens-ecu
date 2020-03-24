@@ -955,3 +955,15 @@
 48	61	1585020975175119208	bootloader/bootloader.elf	5d29b8b84d7b94a9
 48	61	1585020975175119208	bootloader/bootloader.bin	5d29b8b84d7b94a9
 48	61	1585020975175119208	bootloader/bootloader.map	5d29b8b84d7b94a9
+0	2319	1585022841664819731	build.ninja	b68c43de08dd9d89
+11	41	1585022841752820409	esp-idf/app_update/CMakeFiles/__idf_app_update.dir/esp_app_desc.c.obj	501661364bf31991
+41	54	1585022841764820502	esp-idf/app_update/libapp_update.a	c90bb1e8589fb39c
+11	57	0	esp-idf/main/CMakeFiles/spiffs_home_bin	df05d989f5eb1f86
+11	60	0	esp-idf/partition_table/CMakeFiles/partition_table	3926997d06c340b2
+60	77	1585020975175119208	bootloader-prefix/src/bootloader-stamp/bootloader-build	5d29b8b84d7b94a9
+60	77	1585020975175119208	bootloader/bootloader.elf	5d29b8b84d7b94a9
+60	77	1585020975175119208	bootloader/bootloader.bin	5d29b8b84d7b94a9
+60	77	1585020975175119208	bootloader/bootloader.map	5d29b8b84d7b94a9
+54	523	1585022842224824048	esp-idf/esp32/ld/esp32.project.ld	f120a3bace3c0aa0
+523	1012	1585022842720827870	opensecm.elf	79c95c47b9677e08
+1012	1110	1585022842820828642	.bin_timestamp	efef9d0d53b0f23e
