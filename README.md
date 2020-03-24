@@ -24,18 +24,12 @@ In order to compile the project the ESP-IDF Toolchain and build tools are requir
 -----------------------
 Before compiling the project and after the succesful installation of Espressif's toolkit please follow the following steps.
 
-...* open the terminal and navegate to your projects main direcotry
-
+* open the terminal and navegate to your projects main direcotry
 * run `idf.py fullclean`
-
 * after full clean command has finished run `idf.py menuconfig`
-
 * after running *menuconfig* command a menu is going to open on the terminal. Navegate it with the up/down keys and go to "Partition Table --->" and press enter
-
 *  make sure the name under *Custom partition CSV file* matches the name of the partition table file in the root directory of the project. (partitions.csv in this case).
-
 * Save sdkconfig file by pressing *S* and quit the menu by pressing *Q*
-
 * lastly run  `idf.py build` to compile the project and `idf.py flash` to flash it into the ESP32
 ---------
 
