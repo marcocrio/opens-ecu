@@ -5,6 +5,7 @@ This a Senior project implementation of an Electronic Control Module focused on 
 This project is an open source Electronic Control Unit focused on the Fuel Management System of a small (35.8cc) 1 cylinder 4 strokes Electronically Fuel Injected engine (Honda GX35) based on the "Honda GX35 Engine Fuel Injection kit" sold by [ecotrons.com](https://www.ecotrons.com/small_engine_fuel_injection_kit/honda_gx35_engine_fuel_injection_kit/) and its sensors included in its kit.
 
 ### Hardware and SDK
+--------------------
 The ECU features a Xtensa ® dual-core 32-bit LX6 microprocessor [Espressif's ESP32-S2-WROOM-32D](https://www.espressif.com/en/products/hardware/esp32/overview) development board microcontroeller as the main control system for the Fuel Injection System as well as the rest of the functionalities of the ECU.
 
 It contains relevant features for the project such as:
@@ -19,7 +20,9 @@ It contains relevant features for the project such as:
 It is programed and flashed in C/C++ from a Debian based Linux distribution using Espressif's SDK and framework [ESP-IDF](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/)
 In order to compile the project the ESP-IDF Toolchain and build tools are required. more information can be found in the [Get Started](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/) guide.
 
-**Project preparation:** Before compiling the project and after the succesful installation of Espressif's toolkit please follow the following steps.
+**Project preparation:** 
+-----------------------
+Before compiling the project and after the succesful installation of Espressif's toolkit please follow the following steps.
 1. open the terminal and navegate to your projects main direcotry
 2. run `idf.py fullclean`
 3. after full clean command has finished run `idf.py menuconfig`
