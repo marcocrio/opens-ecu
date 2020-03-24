@@ -8,12 +8,13 @@ This project is an open source Electronic Control Unit focused on the Fuel Manag
 Hardware and SDK
 ---
 
-The ECU features a Xtensa ® dual-core 32-bit LX6 microprocessor [Espressif's ESP32-S2-WROOM-32D](https://www.espressif.com/en/products/hardware/esp32/overview) development board microcontroeller as the main control system for the Fuel Injection System as well as the rest of the functionalities of the ECU.
+The ECU features an Xtensa ® dual-core 32-bit LX6 [Espressif's ESP32-S2-WROOM-32D](https://www.espressif.com/en/products/hardware/esp32/overview) development board microprocessor as the main controls system for the Fuel Injection System as well as the custom functionalities of the ECU.
 
-It contains relevant features for the project such as:
+The development board contains relevant features for the project such as:
 - 34 × programmable GPIOs
-- 12-bit SAR ADC up to 18 channels
+- 12-bit SAR ADC. Up to 18 channels
 - 2 × 8-bit DAC
+- 3 × UART
 - CAN 2.0
 - Motor PWM
 - LED PWM up to 16 channels
@@ -21,6 +22,8 @@ It contains relevant features for the project such as:
 
 It is programed and flashed in C/C++ from a Debian based Linux distribution using Espressif's SDK and framework [ESP-IDF](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/)
 In order to compile the project the ESP-IDF Toolchain and build tools are required. more information can be found in the [Get Started](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/) guide.
+
+The ESP32 runs on a FreeRTOS operating system that includes lwIP for OS functionality implementation such as task register and unregister, load distribution, semaphores, interrupt service routines, etc.
 
 
 Project preparation:
