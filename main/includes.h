@@ -39,7 +39,7 @@
 //-----------------Sensors------------------//
     extern int TPS; //TPS adc readgins 
     extern float IAT; //Air temperature in kelvin
-    extern float TPSV;//TPS Voltage
+    extern float TPSV; //TPS Voltage
     extern float pressure; //Barometric Pressure (hPa)
     extern float airmass, fuelmass, RPM, TPS_Percentage;
     extern float ckpPWM; //Ckp teeth PWM;
