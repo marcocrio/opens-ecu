@@ -4,6 +4,7 @@ idf_component_register(SRCS "lib/cmd_wifi/cmd_wifi.c"
                             "lib/console/cons.c"
                             "lib/spiffsVFS/spiffsVFS.c"
                             #"sntp/sntp.c"
+                            "lib/calculations/calc.c"
                             "lib/peripherals/perinit.c"
                     INCLUDE_DIRS ".")
 

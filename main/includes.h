@@ -26,6 +26,13 @@
 #include "argtable3/argtable3.h"
 #include "cmd_decl.h"
 
+//calc & peripherals
+
+#include <driver/adc.h> //Analog to Digital Convertion API
+#include <driver/dac.h> //Digital to Analog conversion API 
+#include "driver/ledc.h" //Pulse Width Mmodulation API
+
+
 
 //-----------------Constans-----------------// 
 

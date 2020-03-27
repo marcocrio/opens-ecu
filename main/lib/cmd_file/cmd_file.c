@@ -49,7 +49,7 @@ static int veDeb(int argc, char **argv)
 
 
     if(ve_args.press->ival[0] < 0 && ve_args.revs->ival[0] < 0){
-        rdfile();
+        prntVE();
     }
     else if(ve_args.press->ival[0] < 0 || ve_args.revs->ival[0] < 0){
 

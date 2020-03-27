@@ -21,6 +21,9 @@
 //peripherals
 #include "lib/peripherals/perinit.h"
 
+//Calculations
+#include "lib/calculations/calc.h"
+
 
 
 
@@ -29,7 +32,6 @@
 //-----------------LOG Constans----------------//
 
 
-    static const char *SYS = "SYSTEM";
     // static const char *SNTP = "SNTP";
 
 
@@ -87,6 +89,20 @@ void app_main(void)
     ESP_LOGI(SYS, "Boot count: %d\n\n", boot_count);
 
 
+//---------------------- Peripherals ----------------------//
+
+    
+    vfsSetup(); //initializes Virtual File System
+    esp_task_wdt_init(30,0);// Watchdog timer settings. it lasts 30 seconds and the 0 indicates that there will not be error.
+    set_injPWM(5000,2500);
+    setADC();
+
+
+
+ //--------------------Tasks registration--------------------//
+
+    xTaskCreate(&inj_pwm, "inj_pwm", 2048, NULL, 5, NULL); 
+    xTaskCreate(&main_Readings, "main_Readings", 2048, NULL, 5, NULL);
 
 //----------------------- NVS init ------------------------//
 
@@ -101,14 +117,6 @@ void app_main(void)
     #endif
 
 
-//---------------------- Peripherals ----------------------//
-
-
-    esp_task_wdt_init(30,0);// Watchdog timer settings. it lasts 30 seconds and the 0 indicates that there will not be error.
-    vfsSetup(); //initializes Virtual File System
-    //ESP_LOGE(SPFS, "Volumetric Efficiency %.2f", VE_Value);
-
-
 //----------------- Command registration ------------------//
 
     initialize_console();
@@ -119,8 +127,7 @@ void app_main(void)
     register_file();
 
 
-    consoleRun();
-
+    // consoleRun();
 
     
 }

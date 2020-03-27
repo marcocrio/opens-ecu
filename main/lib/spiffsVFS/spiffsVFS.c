@@ -1,4 +1,5 @@
 #include "includes.h" //include all standard libraries
+#include "spiffsVFS.h"
 
 //spiffs
 #include <sys/unistd.h>
@@ -61,6 +62,9 @@ void vfsSetup(){
         } else {
             ESP_LOGE(SPFS, "Failed to initialize SPIFFS (%s)", esp_err_to_name(ret));
         }
+
+        rdfile();//initializes VE table arrays
+        
         return;
     }
     
@@ -211,9 +215,17 @@ void rdfile(){
 
     }
     fclose(f);
+    return;
 
+
+}
+
+
+
+void prntVE(){
 
     //Print VE Table
+    int i,j;
 
     ESP_LOGI(SPFS, "Pressure:");
     for(i=0; i< 16; i++){
@@ -237,10 +249,6 @@ void rdfile(){
         j++;
     }
 
-
-
     printf("\n"); 
     return;
-
-
 }
