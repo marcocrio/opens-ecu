@@ -38,7 +38,7 @@ Before compiling the project and after the succesful installation of [Espressif'
   Navegate it with the up/down keys and go to "Partition Table --->" and press enter
 * Make sure the name under *Custom partition CSV file* matches the name of the partition table file in the root directory of the project. (partitions.csv in this case).
 * Save sdkconfig file by pressing *S* and quit the menu by pressing *Q*
-* Lastly run  `idf.py build` to compile the project and/or `idf.py flash` to compile and flash it into the ESP32
+* Lastly run  `idf.py build` to compile the project and/or `idf.py flash` to compile and flash it into the ESP32. `idf.py monitor` can be used to connect to the "terminal-like" console developed to communicate with the ECU
 ---
 
 # Features
