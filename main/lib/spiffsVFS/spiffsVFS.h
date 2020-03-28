@@ -32,6 +32,7 @@ extern "C" {
 
 void vfsSetup();
 void rdfile();
+void prntVE();
 void interpolation(int hpa, int revs);
 
 
