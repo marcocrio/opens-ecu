@@ -25,6 +25,12 @@ In order to compile the project the ESP-IDF Toolchain and build tools are requir
 
 The ESP32 runs on a FreeRTOS operating system whith lwIP for OS functionality implementation such as task registration, load distribution, semaphores, interrupt service routines, etc.
 
+### Resources:
+[ESP32-WROOM-32D & ESP32-WROOM-32U Datasheet](https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32d_esp32-wroom-32u_datasheet_en.pdf)
+[ESP32-D0WD processor - ESP32 Series Datasheet](https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf)
+[Xtensa LX6 Customizable DPU](https://mirrobo.ru/wp-content/uploads/2016/11/Cadence_Tensillica_Xtensa_LX6_ds.pdf)
+[Kolban's book on ESP32](https://leanpub.com/kolban-ESP32)
+
 
 Project preparation:
 ---
