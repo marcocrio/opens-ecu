@@ -99,7 +99,7 @@ void main_Readings(void *pvParameter)
         printf("Injector Duty Cyle: %.4f\n",injDuty);
 
 
-        set_injPWM(5000, 2500);
+        //set_injPWM(5000, 2500);
 
 
         //Sincronization delay
