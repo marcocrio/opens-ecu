@@ -138,9 +138,8 @@ void interpolation(int hpa, int revs){
         dist = VE[j-1][i-1] - ( sqrt( pow(x,2) + pow(y,2) )/ 10000 );
     };
 
-    // printf("\ndist= %.4f\n",dist);
-
     VE_Value = dist;
+    // printf("\ndist= %.4f\n",dist);
 
     // float VolEff = VE[j-1][i-1]+ sqrt(  power( x-VE[j-1][i-1] ) + power(y-VE[j-1][i-1])   );
 
