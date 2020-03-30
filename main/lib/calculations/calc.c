@@ -96,9 +96,10 @@ void main_Readings(void *pvParameter)
         // injPulseTime= (fuelmass/staticFlow + openTime)*1000; //the open time
         injDuty = TPS_Percentage;
 
+        
         printf("Frequency: %.4f\n",freq);
         // printf("Injecor Pulse Time: %.4fms\n",injPulseTime);
-        printf("Injector Duty Cyle: %.4f\n",injDuty);
+        printf("Injector Duty Cyle: %.4f\n\n",injDuty);
 
     }
 }
