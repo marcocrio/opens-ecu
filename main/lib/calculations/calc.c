@@ -41,20 +41,18 @@ void main_Readings(void *pvParameter)
 
 
         //Get MAP Reading on TPS% relation
-        if (TPS_Percentage<11)
-        pressure = -20*(TPS_Percentage)+1022;
-        else
-        pressure = -2.15*(TPS_Percentage-20)+755;
-
+        //if (TPS_Percentage<11)
+        //pressure = -20*(TPS_Percentage)+1022;
+        // else
+        pressure = 89*(TPS_Percentage/100); // change 89 value to Atmospheric Pressure Variable
 
         printf("pressure: %.4f (kPa)\n",pressure); 
-        dac_output_voltage(DAC_CHANNEL_1, (pressure-1022)*(-0.58));//kpascual 
-        
+        //dac_output_voltage(DAC_CHANNEL_1, (pressure-1022)*(-0.58));//kpascual 
         
         //Get RPM Based on TPS% relation
         if(TPS_Percentage<10)
             RPM = 100*(TPS_Percentage)+1200;
-        else if (TPS_Percentage > 40) //added for RPMS 
+        else(TPS_Percentage > 40) //added for RPMS 
             RPM= 10*(TPS_Percentage-60)+8000;
         else
             RPM= 200*(TPS_Percentage-10)+2000; 
@@ -65,12 +63,12 @@ void main_Readings(void *pvParameter)
 
 
         //Get CKP PWM based on RPM Relation
-        if(RPM == 0) 
-            ckpPWM = (60/(44*1))*1000000;
-        else 
-            ckpPWM = (60/(44*RPM))*1000000;
+        //if(RPM == 0) 
+        //    ckpPWM = (60/(44*1))*1000000;
+        //else 
+        //    ckpPWM = (60/(44*RPM))*1000000;
 
-        printf("ckpPWM: %.4f us\n",ckpPWM);
+        //printf("ckpPWM: %.4f us\n",ckpPWM);
 
        
 
@@ -89,10 +87,14 @@ void main_Readings(void *pvParameter)
 
 
         //Fuel injector
-        freq=ckpPWM*44;
+        if(TPS_Percentage = 0)
+            freq = 600; // in hz
+        else (TPS_Percentage > 0) 
+            freq = (74.4*TPS_Percentage)+600;
+       
         // injCycle = 60/RPM;
         // injPulseTime= (fuelmass/staticFlow + openTime)*1000; //the open time
-        injDuty = TPS;
+        injDuty = TPS_Percentage;
 
         printf("Frequency: %.4f\n",freq);
         // printf("Injecor Pulse Time: %.4fms\n",injPulseTime);
