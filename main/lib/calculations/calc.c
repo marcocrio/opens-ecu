@@ -98,13 +98,36 @@ void main_Readings(void *pvParameter)
         // printf("Injecor Pulse Time: %.4fms\n",injPulseTime);
         printf("Injector Duty Cyle: %.4f\n",injDuty);
 
-
-        set_injPWM(5000, 2500);
-
-
-        //Sincronization delay
-        ets_delay_us(10); //sincronizes main reading task and CKP signal creation
-        esp_task_wdt_reset();
-
     }
+}
+
+//*****************************************************************************************//
+//*****************************************************************************************//
+//************************************* Display *******************************************//
+//*****************************************************************************************//
+//*****************************************************************************************//
+void calc_display(void *pvParameter){
+
+    
+    while(1){
+
+        // ESP_LOGI(SYS, "Readings:\n");
+        // printf("TPS ADC: %d \n",TPS);
+        // printf("TPS Voltage: %.4f (V)\n",TPSV); 
+        // printf("TPS%%: %.4f%%\n",TPS_Percentage); 
+        // printf("pressure: %.4f (kPa)\n",pressure); 
+        // printf("RPM: %.4f\n",RPM);
+        // printf("ckpPWM: %.4f us\n",ckpPWM);
+        // printf("Volumetric Efficiency: %.2f\n",VE_Value);
+        // printf("airmass: %.4f (g/cyl)\n",airmass);
+        // printf("fuelmass: %.4f (g/cyl)\n\n",fuelmass); 
+        // printf("Frequency: %.4f\n",freq);
+        // // printf("Injecor Pulse Time: %.4fms\n",injPulseTime);
+        // printf("Injector Duty Cyle: %.4f\n",injDuty);
+
+        // ets_delay_us(10); //sincronizes main reading task and CKP signal creation
+        ESP_LOGE(SYS, "Display:\n");
+        vTaskDelay(100 / portTICK_PERIOD_MS);
+    }
+
 }

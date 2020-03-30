@@ -10,7 +10,7 @@ extern "C" {
 void setADC(); //Set up ADC at 10 bit
 void set_injPWM(float freq, float duty); //Sets up PWM
 void deb();
-void inj_pwm(void *pvParameter);
+void pwm_signals(void *pvParameter);
 
 
 
