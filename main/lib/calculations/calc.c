@@ -99,6 +99,15 @@ void main_Readings(void *pvParameter)
         printf("Injector Duty Cyle: %.4f\n",injDuty);
 
 
+<<<<<<< HEAD
+        //set_injPWM(5000, 2500);
+
+
+        //Sincronization delay
+        ets_delay_us(10); //sincronizes main reading task and CKP signal creation
+        esp_task_wdt_reset();
+
+=======
         set_injPWM(5000, 0.5);
     }
 }
@@ -131,6 +140,7 @@ void calc_display(void *pvParameter){
         // ets_delay_us(10); //sincronizes main reading task and CKP signal creation
         ESP_LOGE(SYS, "Display:\n");
         vTaskDelay(100 / portTICK_PERIOD_MS);
+>>>>>>> 163599fa6ca663f98fda6039bccab88ab94ed6b4
     }
 
 }
