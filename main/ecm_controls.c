@@ -24,7 +24,7 @@
 //Calculations
 #include "lib/calculations/calc.h"
 
-
+const char *TAG = "task";
 
 
 // ================== Global Variables Definition ==================//
@@ -72,6 +72,37 @@ RTC_DATA_ATTR static int boot_count = 0;
 
 
 
+
+
+
+
+
+static int tasks_info()
+{
+    const size_t bytes_per_task = 40; /* see vTaskList description */
+    char *task_list_buffer = malloc(uxTaskGetNumberOfTasks() * bytes_per_task);
+    if (task_list_buffer == NULL) {
+        ESP_LOGE(TAG, "failed to allocate buffer for vTaskList output");
+        return 1;
+    }
+    fputs("Task Name\tStatus\tPrio\tHWM\tTask#", stdout);
+#ifdef CONFIG_FREERTOS_VTASKLIST_INCLUDE_COREID
+    fputs("\tAffinity", stdout);
+#endif
+    fputs("\n", stdout);
+    vTaskList(task_list_buffer);
+    fputs(task_list_buffer, stdout);
+    free(task_list_buffer);
+    return 0;
+}
+
+
+
+
+
+
+
+
 //*****************************************************************************************//
 //*****************************************************************************************//
 //************************************** MAIN *********************************************//
@@ -99,14 +130,19 @@ void app_main(void)
 
 
 
- //--------------------Tasks registration--------------------//
 
-    xTaskCreate(&pwm_signals, "pwm_signals", 2048, NULL, 5, NULL); 
-    xTaskCreate(&main_Readings, "main_Readings", 2048, NULL, 5, NULL);
-    xTaskCreate(&calc_display, "calc_display", 1024, NULL, 5, NULL);
+    tasks_info();
+
+//--------------------Tasks registration--------------------//
+
+    xTaskCreate(&pwm_signals, "pwm_signals", 1024, NULL, 5, NULL); 
+    // xTaskCreate(&main_Readings, "main_Readings", 2048, NULL, 5, NULL);
+    xTaskCreate(&calc_display, "calc_display", 2048, NULL, 5, NULL);
 
 //----------------------- NVS init ------------------------//
-
+    
+    tasks_info();
+    
 
     initialize_nvs();
 
@@ -126,9 +162,15 @@ void app_main(void)
     esp_console_register_help_command();
     // register_system();
     register_file();
-
+    // register_system();
 
     // consoleRun();
 
     
+
+
+
+
+
+
 }
