@@ -26,9 +26,8 @@ void setADC()
 //*****************************************************************************************//
 //*****************************************************************************************//
 
-void inj_pwm(void *pvParameter) // square wave signals for injector and spark plug
+void pwm_signals(void *pvParameter) // square wave signals for injector and spark plug
 {    
-   // ets_delay_us(10); // sincronization with Main Readings task
     
     gpio_pad_select_gpio(2);
     gpio_pad_select_gpio(16);
