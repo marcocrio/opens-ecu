@@ -31,9 +31,9 @@ void setADC()
 void set_injPWM(float freq, float duty)
 {   
     ledc_timer_config_t timerConfig;
-    timerConfig.duty_resolution =LEDC_TIMER_10_BIT ;
+    timerConfig.duty_resolution =LEDC_TIMER_5_BIT ;
     timerConfig.timer_num = LEDC_TIMER_0;
-    timerConfig.freq_hz = ckpPWM*44;
+    timerConfig.freq_hz = freq;
     timerConfig.speed_mode = LEDC_HIGH_SPEED_MODE;
     ledc_timer_config(&timerConfig);
 
@@ -43,7 +43,7 @@ void set_injPWM(float freq, float duty)
     tChaConfig.channel = LEDC_CHANNEL_0;
     tChaConfig.intr_type = LEDC_INTR_DISABLE;
     tChaConfig.timer_sel = LEDC_TIMER_0;
-    tChaConfig.duty = TPS; // (2^10)*(%) 
+    tChaConfig.duty = duty; // (2^10)*(%) 
     ledc_channel_config(&tChaConfig);
 }
 

@@ -123,8 +123,8 @@ void interpolation(int hpa, int revs){
 
 
 
-    printf("\n%.2f   %.2f\n",VE[j-1][i-1], VE[j-1][i]);
-    printf("%.2f   %.2f\n",VE[j][i-1], VE[j][i]);
+    // printf("\n%.2f   %.2f\n",VE[j-1][i-1], VE[j-1][i]);
+    // printf("%.2f   %.2f\n",VE[j][i-1], VE[j][i]);
 
 
     x = ( 100*(hpa - pre[i-1]) / (xh - xl) ) * ( 100*( VE[j-1][i] - VE[j-1][i-1] ) );
@@ -138,9 +138,9 @@ void interpolation(int hpa, int revs){
         dist = VE[j-1][i-1] - ( sqrt( pow(x,2) + pow(y,2) )/ 10000 );
     };
 
-    printf("\ndist= %.4f\n",dist);
+    // printf("\ndist= %.4f\n",dist);
 
-
+    VE_Value = dist;
 
     // float VolEff = VE[j-1][i-1]+ sqrt(  power( x-VE[j-1][i-1] ) + power(y-VE[j-1][i-1])   );
 

@@ -101,8 +101,9 @@ void app_main(void)
 
  //--------------------Tasks registration--------------------//
 
-    xTaskCreate(&inj_pwm, "inj_pwm", 2048, NULL, 5, NULL); 
+    xTaskCreate(&inj_pwm, "inj_pwm", 1024, NULL, 5, NULL); 
     xTaskCreate(&main_Readings, "main_Readings", 2048, NULL, 5, NULL);
+    xTaskCreate(&calc_display, "calc_display", 1024, NULL, 5, NULL);
 
 //----------------------- NVS init ------------------------//
 
