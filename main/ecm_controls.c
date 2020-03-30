@@ -94,7 +94,6 @@ void app_main(void)
     
     vfsSetup(); //initializes Virtual File System
     esp_task_wdt_init(30,0);// Watchdog timer settings. it lasts 30 seconds and the 0 indicates that there will not be error.
-    //set_injPWM(5000,2500);
     setADC();
 
 

@@ -98,11 +98,8 @@ void main_Readings(void *pvParameter)
         // printf("Injecor Pulse Time: %.4fms\n",injPulseTime);
         printf("Injector Duty Cyle: %.4f\n",injDuty);
 
-
-        set_injPWM(5000, 0.5);
     }
 }
-
 
 //*****************************************************************************************//
 //*****************************************************************************************//
