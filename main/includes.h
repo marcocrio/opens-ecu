@@ -10,7 +10,7 @@
 #include "freertos/task.h"
 #include "freertos/queue.h"
 #include "freertos/event_groups.h"
-
+#include "freertos/FreeRTOSConfig.h"
 
 
 //standard esp

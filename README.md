@@ -25,6 +25,12 @@ In order to compile the project the ESP-IDF Toolchain and build tools are requir
 
 The ESP32 runs on a FreeRTOS operating system whith lwIP for OS functionality implementation such as task registration, load distribution, semaphores, interrupt service routines, etc.
 
+### Resources:
+* [ESP32-WROOM-32D & ESP32-WROOM-32U Datasheet](https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32d_esp32-wroom-32u_datasheet_en.pdf)
+* [ESP32-D0WD processor - ESP32 Series Datasheet](https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf)
+* [Xtensa LX6 Customizable DPU](https://mirrobo.ru/wp-content/uploads/2016/11/Cadence_Tensillica_Xtensa_LX6_ds.pdf)
+* [Kolban's book on ESP32](https://leanpub.com/kolban-ESP32)
+
 
 Project preparation:
 ---
@@ -38,7 +44,7 @@ Before compiling the project and after the succesful installation of [Espressif'
   Navegate it with the up/down keys and go to "Partition Table --->" and press enter
 * Make sure the name under *Custom partition CSV file* matches the name of the partition table file in the root directory of the project. (partitions.csv in this case).
 * Save sdkconfig file by pressing *S* and quit the menu by pressing *Q*
-* Lastly run  `idf.py build` to compile the project and/or `idf.py flash` to compile and flash it into the ESP32. `idf.py monitor` can be used to connect to the "terminal-like" console developed to communicate with the ECU
+* Lastly run  `idf.py build` to compile the project and/or `idf.py flash` to compile and flash it into the ESP32. `idf.py monitor` can be used to connect to the "terminal-like" console developed to communicate with the ECU (to close the monitori push `ctrl + ]`).
 ---
 
 # Features
