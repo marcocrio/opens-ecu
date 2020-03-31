@@ -103,7 +103,7 @@ void app_main(void)
 
     xTaskCreate(&pwm_signals, "pwm_signals", 2048, NULL, 5, NULL); 
     xTaskCreate(&main_Readings, "main_Readings", 2048, NULL, 5, NULL);
-    // xTaskCreate(&calc_display, "calc_display", 1024, NULL, 5, NULL);
+    xTaskCreate(&calc_display, "calc_display", 1024, NULL, 6, NULL);
 
 //----------------------- NVS init ------------------------//
 
