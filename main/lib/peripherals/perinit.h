@@ -11,6 +11,7 @@ void setADC(); //Set up ADC at 10 bit
 void set_injPWM(float freq, float duty); //Sets up PWM
 void deb();
 void pwm_signals(void *pvParameter);
+void perinit_display(void *pvParameter);
 
 
 

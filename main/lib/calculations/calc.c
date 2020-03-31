@@ -38,6 +38,7 @@ void main_Readings(void *pvParameter)
         //Get TPS Percentage
         TPS_Percentage = (TPSV/4.6)*100; //originally voltage/4.6*100 changed to pressure/4.6 
         printf("TPS%%: %.4f%%\n",TPS_Percentage); 
+        readings_buff[TPSb] = TPS_Percentage;
 
 
         //Get MAP Reading on TPS% relation
@@ -45,18 +46,22 @@ void main_Readings(void *pvParameter)
         //pressure = -20*(TPS_Percentage)+1022;
         // else
         pressure = 89*(TPS_Percentage/100); // change 89 value to Atmospheric Pressure Variable
-
+        readings_buff[MAPb] = pressure;
         printf("pressure: %.4f (kPa)\n",pressure); 
         //dac_output_voltage(DAC_CHANNEL_1, (pressure-1022)*(-0.58));//kpascual 
         
         //Get RPM Based on TPS% relation
         if(TPS_Percentage<10)
+        {
             RPM = 100*(TPS_Percentage)+1200;
-        else(TPS_Percentage > 40) //added for RPMS 
+        }
+        else if(TPS_Percentage > 40) //added for RPMS
+        { 
             RPM= 10*(TPS_Percentage-60)+8000;
+        }
         else
             RPM= 200*(TPS_Percentage-10)+2000; 
-
+        readings_buff[RPMb]=RPM;
         printf("RPM: %.4f\n",RPM);  
         
         dac_output_voltage(DAC_CHANNEL_2, (RPM-1200)*0.0375);//RPMS output
@@ -67,37 +72,43 @@ void main_Readings(void *pvParameter)
         //    ckpPWM = (60/(44*1))*1000000;
         //else 
         //    ckpPWM = (60/(44*RPM))*1000000;
-
+        readings_buff[CKPb]=ckpPWM;
         //printf("ckpPWM: %.4f us\n",ckpPWM);
 
        
 
         //Volumetric Efficiency 
         interpolation(pressure,RPM); //Gets the exact VE value
+        readings_buff[VEb]=VE_Value;
         printf("Volumetric Efficiency: %.2f\n",VE_Value);
 
 
         //Airmass
         airmass = (Vengine*VE_Value*pressure)/(UniGas*IAT*cylinder); 
+        readings_buff[Airmassb]=airmass;
         printf("airmass: %.4f (g/cyl)\n",airmass);
 
         //Fuelmass
         fuelmass = (airmass)/(afr); 
+        readings_buff[Fuelmassb]=fuelmass;
         printf("fuelmass: %.4f (g/cyl)\n\n",fuelmass); 
 
 
         //Fuel injector
-        if(TPS_Percentage = 0)
+        if(TPS_Percentage == 0){
             freq = 600; // in hz
-        else (TPS_Percentage > 0) 
+        }
+        else if(TPS_Percentage > 0){
             freq = (74.4*TPS_Percentage)+600;
-       
+        }
+        readings_buff[Freqb]=freq;
         // injCycle = 60/RPM;
         // injPulseTime= (fuelmass/staticFlow + openTime)*1000; //the open time
         injDuty = TPS_Percentage;
-
+        readings_buff[DutyCicleb]=injDuty;
         
         printf("Frequency: %.4f\n",freq);
+        
         // printf("Injecor Pulse Time: %.4fms\n",injPulseTime);
         printf("Injector Duty Cyle: %.4f\n\n",injDuty);
 

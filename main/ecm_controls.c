@@ -60,6 +60,8 @@
     float injPulseTime;
     float injCycle;
 
+    //Buffer
+    float readings_buff[9];
 
 
 //------------------------DAQ------------------------//
@@ -97,12 +99,11 @@ void app_main(void)
     rdfile();
     setADC();
 
-
-
+     
  //--------------------Tasks registration--------------------//
 
-    xTaskCreate(&pwm_signals, "pwm_signals", 2048, NULL, 5, NULL); 
     xTaskCreate(&main_Readings, "main_Readings", 2048, NULL, 5, NULL);
+    xTaskCreate(&pwm_signals, "pwm_signals", 2048, NULL, 5, NULL); 
     xTaskCreate(&calc_display, "calc_display", 1024, NULL, 5, NULL);
 
 //----------------------- NVS init ------------------------//

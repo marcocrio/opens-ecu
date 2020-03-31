@@ -37,16 +37,18 @@ void pwm_signals(void *pvParameter) // square wave signals for injector and spar
     gpio_set_direction(2,GPIO_MODE_OUTPUT);
     gpio_set_direction(16,GPIO_MODE_OUTPUT);
 
-        int frequency = (int)freq; // frequency in hz
-        //float dutyper = 70; // duty cycle in percentage
-        float tduty = injDuty/100 * 1000000; // duty cycle for calculations 
-        float duty_inv_per = 100 - injDuty; // counter part of duty cycle percentage
+        int frequency = 1; // frequency in hz
+        float dutyper = 50; // duty cycle in percentage
+        float tduty = dutyper/100 * 1000000; // duty cycle for calculations 
+        float duty_inv_per = 100 - dutyper; // counter part of duty cycle percentage
         float duty_inv = duty_inv_per/100 * 1000000; // counter part of duty cycle for calculations
         int delay = (int)tduty;
         int delay_inv = (int)duty_inv;
 
+
     while(1) 
     {
+        
         gpio_set_level(2, 1); // injector pwm
         gpio_set_level(16, 0); // spark plug pwm
         ets_delay_us(delay/frequency);

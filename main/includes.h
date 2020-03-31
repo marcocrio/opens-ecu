@@ -33,7 +33,6 @@
 #include "driver/ledc.h" //Pulse Width Mmodulation API
 
 
-
 //-----------------Constans-----------------// 
 
     extern const float Vengine; //VE Engine Constant ()
@@ -58,3 +57,15 @@
     extern float injDuty;
     extern float injPulseTime;
     extern float injCycle;
+
+    //Buffer
+    extern float readings_buff[9];
+    #define TPSb 0
+    #define CKPb 1
+    #define MAPb 2
+    #define RPMb 3
+    #define Freqb 4
+    #define VEb  5
+    #define Airmassb 6
+    #define Fuelmassb 7
+    #define DutyCicleb 8
