@@ -48,7 +48,7 @@ void pwm_signals(void *pvParameter) // square wave signals for injector and spar
 
     while(1) 
     {
-        
+        //printf("Amo a mi novia, y cocina deliciosooooooooo!"); 
         gpio_set_level(2, 1); // injector pwm
         gpio_set_level(16, 0); // spark plug pwm
         ets_delay_us(delay/frequency);
@@ -70,9 +70,12 @@ void pwm_signals(void *pvParameter) // square wave signals for injector and spar
 
 void deb(){
 
-    
+    while(1)
+    {
     TPS= 5;
-    printf("\nTPS: %d\nVengine: %.2f\n\n",TPS,Vengine);
+    printf("\nFrequency: %.2f\nDuty: %.2f\n\n",readings_buff[Freqb],readings_buff[DutyCicleb]);
+    }
 
 
 };
+

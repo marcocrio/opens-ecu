@@ -112,6 +112,8 @@ void main_Readings(void *pvParameter)
         // printf("Injecor Pulse Time: %.4fms\n",injPulseTime);
         printf("Injector Duty Cyle: %.4f\n\n",injDuty);
 
+      
+
         esp_task_wdt_reset();
 
     }
