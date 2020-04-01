@@ -29,7 +29,7 @@ void main_Readings(void *pvParameter)
         } 
         TPS= TPS/ 1000;  
         printf("TPS ADC: %d \n",TPS);
-        ets_delay_us(10); //sincronizes main reading task and CKP signal creation
+        
         
         //Get TPS Voltage
         TPSV = TPS * 0.00449658;  
@@ -112,6 +112,8 @@ void main_Readings(void *pvParameter)
         // printf("Injecor Pulse Time: %.4fms\n",injPulseTime);
         printf("Injector Duty Cyle: %.4f\n\n",injDuty);
 
+        esp_task_wdt_reset();
+
     }
 }
 
@@ -122,6 +124,7 @@ void main_Readings(void *pvParameter)
 //*****************************************************************************************//
 void calc_display(void *pvParameter){
 
+    esp_task_wdt_add(NULL);// subscription to WDT
     
     while(1){
 
@@ -141,7 +144,9 @@ void calc_display(void *pvParameter){
 
         // ets_delay_us(10); //sincronizes main reading task and CKP signal creation
         ESP_LOGE(SYS, "Display:\n");
-        vTaskDelay(100 / portTICK_PERIOD_MS);
+        ets_delay_us(1000); //sincronizes main reading task and CKP signal creation
+        // vTaskDelay(100 / portTICK_PERIOD_MS);
+        esp_task_wdt_reset();
     }
 
 }
