@@ -48,7 +48,7 @@ void pwm_signals(void *pvParameter) // square wave signals for injector and spar
 
     while(1) 
     {
-        //printf("Amo a mi novia, y cocina deliciosooooooooo!"); 
+         
         gpio_set_level(2, 1); // injector pwm
         gpio_set_level(16, 0); // spark plug pwm
         ets_delay_us(delay/frequency);

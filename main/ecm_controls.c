@@ -135,7 +135,7 @@ void app_main(void)
     //xTaskCreate(&main_Readings, "main_Readings", 2048, NULL, 5, NULL);
     xTaskCreate(&pwm_signals, "pwm_signals", 2048, NULL, 5, NULL); 
     //xTaskCreate(&calc_display, "calc_display", 2048, NULL, 5, NULL);
-    xTaskCreate(&deb, "debugging",2048, NULL, 5, NULL);
+    xTaskCreate(&deb, "pwm_debugging",2048, NULL, 5, NULL);
 
 //--------------------Tasks registration--------------------//
 
