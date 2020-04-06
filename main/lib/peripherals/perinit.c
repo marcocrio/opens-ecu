@@ -1,5 +1,7 @@
 #include "includes.h"
 #include "perinit.h"
+#include "soc/timer_group_struct.h"
+#include "soc/timer_group_reg.h"
 
 //-----------------LOG Constans----------------//
 
@@ -37,17 +39,22 @@ void pwm_signals(void *pvParameter) // square wave signals for injector and spar
     gpio_set_direction(2,GPIO_MODE_OUTPUT);
     gpio_set_direction(16,GPIO_MODE_OUTPUT);
 
+    while(flag) 
+    { 
         int frequency = 1; // frequency in hz
-        float dutyper = 50; // duty cycle in percentage
+        float dutyper = injDuty; // duty cycle in percentage
         float tduty = dutyper/100 * 1000000; // duty cycle for calculations 
         float duty_inv_per = 100 - dutyper; // counter part of duty cycle percentage
         float duty_inv = duty_inv_per/100 * 1000000; // counter part of duty cycle for calculations
         int delay = (int)tduty;
         int delay_inv = (int)duty_inv;
 
-
-    while(1) 
-    { 
+        if (frequency==0){
+            frequency = 2;
+        } 
+        TIMERG0.wdt_wprotect=TIMG_WDT_WKEY_VALUE;
+        TIMERG0.wdt_feed=1;
+        TIMERG0.wdt_wprotect=0;
         gpio_set_level(2, 1); // injector pwm
         gpio_set_level(16, 0); // spark plug pwm
         ets_delay_us(delay/frequency);
@@ -55,6 +62,8 @@ void pwm_signals(void *pvParameter) // square wave signals for injector and spar
         gpio_set_level(2, 0);
         gpio_set_level(16, 1);
         ets_delay_us(delay_inv/frequency);
+
+        printf("\nFrequency: %.2f\nDuty: %.2f\n\n",readings_buff[Freqb],readings_buff[DutyCicleb]);
         
         esp_task_wdt_reset();
     }
@@ -71,8 +80,13 @@ void deb(){
 
     while(1)
     {
+    TIMERG0.wdt_wprotect=TIMG_WDT_WKEY_VALUE;
+    TIMERG0.wdt_feed=1;
+    TIMERG0.wdt_wprotect=0;
     TPS= 5;
     printf("\nFrequency: %.2f\nDuty: %.2f\n\n",readings_buff[Freqb],readings_buff[DutyCicleb]);
+
+    esp_task_wdt_reset();
     }
 
 

@@ -1,6 +1,8 @@
 #include "includes.h" //include all standard libraries
 #include "../spiffsVFS/spiffsVFS.h" //to use interpolation
 #include "../peripherals/perinit.h"
+#include "soc/timer_group_struct.h"
+#include "soc/timer_group_reg.h"
 
 const char *SYS = "SYSTEM";
 
@@ -15,7 +17,10 @@ void main_Readings(void *pvParameter)
 
     while(flag)
     {
-       
+        TIMERG0.wdt_wprotect=TIMG_WDT_WKEY_VALUE;
+        TIMERG0.wdt_feed=1;
+        TIMERG0.wdt_wprotect=0;
+        
         ESP_LOGI(SYS, "Readings:\n");
         
         //get timestamp

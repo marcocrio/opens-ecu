@@ -62,6 +62,7 @@ const char *TAG = "task";
 
     //Buffer
     float readings_buff[9];
+    int flag = 1;
 
 
 //------------------------DAQ------------------------//
@@ -129,12 +130,10 @@ void app_main(void)
     TaskHandle_t xHandle;
  
  //--------------------Tasks registration--------------------//
-
-    xTaskCreate(&main_Readings, "main_Readings", 2048, NULL, 5, &xHandle);//&xHandle_Readings);
-    xTaskCreate(&pwm_signals, "pwm_signals", 2048, NULL, 5, NULL);//&xHandle_pwm); 
+    xTaskCreatePinnedToCore(&pwm_signals, "pwm_signals", 2048, NULL, 5, NULL,1);//&xHandle_pwm); 
     //xTaskCreate(&calc_display, "calc_display", 2048, NULL, 5, NULL);//&xHandle_calcdisplay);
-    xTaskCreate(&deb, "pwm_debugging",2048, NULL, 5, NULL);//&xHandle_pwmbug);
-   
+    //xTaskCreatePinnedToCore(&deb, "pwm_debugging",2048, NULL, 5, NULL,1);//&xHandle_pwmbug);
+    xTaskCreatePinnedToCore(&main_Readings, "main_Readings", 2048, NULL, 5, &xHandle,0);//&xHandle_Readings);
 //--------------------Tasks registration--------------------//
 
     //xTaskCreate(&pwm_signals, "pwm_signals", 1024, NULL, 5, NULL); 

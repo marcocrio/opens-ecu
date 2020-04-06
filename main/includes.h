@@ -69,3 +69,5 @@
     #define Airmassb 6
     #define Fuelmassb 7
     #define DutyCicleb 8
+    
+    extern int flag;
