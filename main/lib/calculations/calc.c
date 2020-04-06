@@ -13,9 +13,9 @@ void main_Readings(void *pvParameter)
     dac_output_enable(DAC_CHANNEL_2);//RPMS output
     int i; 
     esp_task_wdt_add(NULL);
-    int flag = 1;
+    
 
-    while(flag)
+    while(1)
     {
         TIMERG0.wdt_wprotect=TIMG_WDT_WKEY_VALUE;
         TIMERG0.wdt_feed=1;
@@ -114,7 +114,7 @@ void main_Readings(void *pvParameter)
         printf("Injector Duty Cyle: %.4f\n\n",injDuty);
 
       
-
+        flag = 1;
         esp_task_wdt_reset();
 
     }
@@ -145,11 +145,13 @@ void calc_display(void *pvParameter){
         printf("Injecor Pulse Time: %.4fms\n",injPulseTime);
         printf("Injector Duty Cyle: %.4f\n",injDuty);
 
+        
         // ets_delay_us(10); //sincronizes main reading task and CKP signal creation
         ESP_LOGE(SYS, "Display:\n");
         ets_delay_us(1000); //sincronizes main reading task and CKP signal creation
         // vTaskDelay(100 / portTICK_PERIOD_MS);
         esp_task_wdt_reset();
+        
     }
 
 }
