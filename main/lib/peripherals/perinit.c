@@ -29,12 +29,12 @@ void setADC()
 void pwm_signals(void *pvParameter) // square wave signals for injector and spark plug
 {    
     
-    gpio_pad_select_gpio(2);
+    gpio_pad_select_gpio(4);
     gpio_pad_select_gpio(16);
     esp_task_wdt_add(NULL);// subscription to WDT
 
     /* Set the GPIO as a push/pull output */
-    gpio_set_direction(2,GPIO_MODE_OUTPUT);
+    gpio_set_direction(4,GPIO_MODE_OUTPUT);
     gpio_set_direction(16,GPIO_MODE_OUTPUT);
 
         int freq = 1; // frequency in hz
@@ -55,6 +55,7 @@ void pwm_signals(void *pvParameter) // square wave signals for injector and spar
         gpio_set_level(16, 1);
         ets_delay_us(delay_inv/freq);
         
+        vTaskDelay(2);
         esp_task_wdt_reset();
     }
 };
