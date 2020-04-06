@@ -11,8 +11,9 @@ void main_Readings(void *pvParameter)
     dac_output_enable(DAC_CHANNEL_2);//RPMS output
     int i; 
     esp_task_wdt_add(NULL);
+    int flag = 1;
 
-    while(1)
+    while(flag)
     {
        
         ESP_LOGI(SYS, "Readings:\n");
@@ -51,18 +52,19 @@ void main_Readings(void *pvParameter)
         //dac_output_voltage(DAC_CHANNEL_1, (pressure-1022)*(-0.58));//kpascual 
         
         //Get RPM Based on TPS% relation
-        if(TPS_Percentage<10)
-        {
-            RPM = 100*(TPS_Percentage)+1200;
+        
+        if(TPS_Percentage == 0){
+            RPM = 600;
         }
-        else if(TPS_Percentage > 40) //added for RPMS
-        { 
-            RPM= 10*(TPS_Percentage-60)+8000;
+        else if(TPS_Percentage > 0){
+            RPM = (74.4*TPS_Percentage)+600;
         }
-        else
-            RPM= 200*(TPS_Percentage-10)+2000; 
         readings_buff[RPMb]=RPM;
-        printf("RPM: %.4f\n",RPM);  
+
+        // injCycle = 60/RPM;
+        // injPulseTime= (fuelmass/staticFlow + openTime)*1000; //the open time
+        injDuty = TPS_Percentage;
+        readings_buff[DutyCicleb]=injDuty;  
         
         dac_output_voltage(DAC_CHANNEL_2, (RPM-1200)*0.0375);//RPMS output
 
@@ -76,7 +78,6 @@ void main_Readings(void *pvParameter)
         //printf("ckpPWM: %.4f us\n",ckpPWM);
 
        
-
         //Volumetric Efficiency 
         interpolation(pressure,RPM); //Gets the exact VE value
         readings_buff[VEb]=VE_Value;
@@ -95,12 +96,7 @@ void main_Readings(void *pvParameter)
 
 
         //Fuel injector
-        if(TPS_Percentage == 0){
-            freq = 600; // in hz
-        }
-        else if(TPS_Percentage > 0){
-            freq = (74.4*TPS_Percentage)+600;
-        }
+        freq = RPM/60;
         readings_buff[Freqb]=freq;
         // injCycle = 60/RPM;
         // injPulseTime= (fuelmass/staticFlow + openTime)*1000; //the open time
@@ -130,19 +126,19 @@ void calc_display(void *pvParameter){
     
     while(1){
 
-        // ESP_LOGI(SYS, "Readings:\n");
-        // printf("TPS ADC: %d \n",TPS);
-        // printf("TPS Voltage: %.4f (V)\n",TPSV); 
-        // printf("TPS%%: %.4f%%\n",TPS_Percentage); 
-        // printf("pressure: %.4f (kPa)\n",pressure); 
-        // printf("RPM: %.4f\n",RPM);
-        // printf("ckpPWM: %.4f us\n",ckpPWM);
-        // printf("Volumetric Efficiency: %.2f\n",VE_Value);
-        // printf("airmass: %.4f (g/cyl)\n",airmass);
-        // printf("fuelmass: %.4f (g/cyl)\n\n",fuelmass); 
-        // printf("Frequency: %.4f\n",freq);
-        // // printf("Injecor Pulse Time: %.4fms\n",injPulseTime);
-        // printf("Injector Duty Cyle: %.4f\n",injDuty);
+        ESP_LOGI(SYS, "Readings:\n");
+        printf("TPS ADC: %d \n",TPS);
+        printf("TPS Voltage: %.4f (V)\n",TPSV); 
+        printf("TPS%%: %.4f%%\n",TPS_Percentage); 
+        printf("pressure: %.4f (kPa)\n",pressure); 
+        printf("RPM: %.4f\n",RPM);
+        printf("ckpPWM: %.4f us\n",ckpPWM);
+        printf("Volumetric Efficiency: %.2f\n",VE_Value);
+        printf("airmass: %.4f (g/cyl)\n",airmass);
+        printf("fuelmass: %.4f (g/cyl)\n\n",fuelmass); 
+        printf("Frequency: %.4f\n",freq);
+        printf("Injecor Pulse Time: %.4fms\n",injPulseTime);
+        printf("Injector Duty Cyle: %.4f\n",injDuty);
 
         // ets_delay_us(10); //sincronizes main reading task and CKP signal creation
         ESP_LOGE(SYS, "Display:\n");

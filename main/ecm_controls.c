@@ -99,12 +99,6 @@ static int tasks_info()
 }
 
 
-
-
-
-
-
-
 //*****************************************************************************************//
 //*****************************************************************************************//
 //************************************** MAIN *********************************************//
@@ -130,17 +124,21 @@ void app_main(void)
     rdfile();
     setADC();
 
+ //------------------- Task Handler -------------------------//
+
+    TaskHandle_t xHandle;
+ 
  //--------------------Tasks registration--------------------//
 
-    //xTaskCreate(&main_Readings, "main_Readings", 2048, NULL, 5, NULL);
-    xTaskCreate(&pwm_signals, "pwm_signals", 2048, NULL, 5, NULL); 
-    //xTaskCreate(&calc_display, "calc_display", 2048, NULL, 5, NULL);
-    xTaskCreate(&deb, "pwm_debugging",2048, NULL, 5, NULL);
-
+    xTaskCreate(&main_Readings, "main_Readings", 2048, NULL, 5, &xHandle);//&xHandle_Readings);
+    xTaskCreate(&pwm_signals, "pwm_signals", 2048, NULL, 5, NULL);//&xHandle_pwm); 
+    //xTaskCreate(&calc_display, "calc_display", 2048, NULL, 5, NULL);//&xHandle_calcdisplay);
+    xTaskCreate(&deb, "pwm_debugging",2048, NULL, 5, NULL);//&xHandle_pwmbug);
+   
 //--------------------Tasks registration--------------------//
 
     //xTaskCreate(&pwm_signals, "pwm_signals", 1024, NULL, 5, NULL); 
-    // xTaskCreate(&main_Readings, "main_Readings", 2048, NULL, 5, NULL);
+    //xTaskCreate(&main_Readings, "main_Readings", 2048, NULL, 5, NULL);
     //xTaskCreate(&calc_display, "calc_display", 2048, NULL, 5, NULL);
 
 //----------------------- NVS init ------------------------//
