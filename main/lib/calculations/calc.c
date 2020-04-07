@@ -10,7 +10,7 @@ void main_Readings(void *pvParameter)
     dac_output_enable(DAC_CHANNEL_1);//pressure output
     dac_output_enable(DAC_CHANNEL_2);//RPMS output
     int i; 
-    esp_task_wdt_add(NULL);
+    // esp_task_wdt_add(NULL);
 
     while(1)
     {
@@ -29,7 +29,7 @@ void main_Readings(void *pvParameter)
         } 
         TPS= TPS/ 1000;  
         // printf("TPS ADC: %d \n",TPS);
-        
+        vTaskDelay( 2 );
         
         //Get TPS Voltage
         TPSV = TPS * 0.00449658;  
@@ -46,9 +46,6 @@ void main_Readings(void *pvParameter)
         else
         pressure = -2.15*(TPS_Percentage-20)+755;
 
-
-        // printf("pressure: %.4f (kPa)\n",pressure); 
-        dac_output_voltage(DAC_CHANNEL_1, (pressure-1022)*(-0.58));//kpascual 
         
         
         //Get RPM Based on TPS% relation
@@ -60,8 +57,6 @@ void main_Readings(void *pvParameter)
             RPM= 200*(TPS_Percentage-10)+2000; 
 
         // printf("RPM: %.4f\n",RPM);  
-        
-        dac_output_voltage(DAC_CHANNEL_2, (RPM-1200)*0.0375);//RPMS output
 
 
         //Get CKP PWM based on RPM Relation
@@ -77,7 +72,7 @@ void main_Readings(void *pvParameter)
         //Volumetric Efficiency 
         interpolation(pressure,RPM); //Gets the exact VE value
         // printf("Volumetric Efficiency: %.2f\n",VE_Value);
-
+        vTaskDelay( 2 );
 
         //Airmass
         airmass = (Vengine*VE_Value*pressure)/(UniGas*IAT*cylinder); 
@@ -100,8 +95,6 @@ void main_Readings(void *pvParameter)
         // printf("Injector Duty Cyle: %.4f\n\n",injDuty);
 
         vTaskDelay( 2 );
-        esp_task_wdt_reset();
-
     }
 }
 
@@ -112,7 +105,6 @@ void main_Readings(void *pvParameter)
 //*****************************************************************************************//
 void calc_display(void *pvParameter){
 
-    esp_task_wdt_add(NULL);// subscription to WDT
     
     while(1){
 
@@ -133,9 +125,7 @@ void calc_display(void *pvParameter){
 
         // ets_delay_us(10); //sincronizes main reading task and CKP signal creation
         
-        vTaskDelay( 1500 / portTICK_PERIOD_MS);
-        // vTaskDelay(100 / portTICK_PERIOD_MS);
-        esp_task_wdt_reset();
+        vTaskDelay( 500 / portTICK_PERIOD_MS);
     }
 
 }

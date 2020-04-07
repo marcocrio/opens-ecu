@@ -32,8 +32,6 @@ const char *TAG = "task";
 //-----------------LOG Constans----------------//
 
 
-    // static const char *SNTP = "SNTP";
-
 
 //-----------------Constans-----------------// 
 
@@ -95,7 +93,7 @@ void app_main(void)
 
     
     vfsSetup(); //initializes Virtual File System
-    esp_task_wdt_init(30,0);// Watchdog timer settings. it lasts 30 seconds and the 0 indicates that there will not be error.
+    // esp_task_wdt_init(30,0);// Watchdog timer settings. it lasts 30 seconds and the 0 indicates that there will not be error.
     rdfile();
     setADC();
 
@@ -110,7 +108,6 @@ void app_main(void)
     
 
     
-
     initialize_nvs();
 
     #if CONFIG_STORE_HISTORY
@@ -132,12 +129,6 @@ void app_main(void)
     // register_system();
 
     // consoleRun();
-
-    
-
-
-
-
 
 
 }
