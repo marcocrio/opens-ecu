@@ -50,9 +50,7 @@ void pwm_signals(void *pvParameter) // square wave signals for injector and spar
         if (frequency==0){
             frequency = 2;
         } 
-        TIMERG0.wdt_wprotect=TIMG_WDT_WKEY_VALUE;
-        TIMERG0.wdt_feed=1;
-        TIMERG0.wdt_wprotect=0;
+     
         gpio_set_level(2, 1); // injector pwm
         gpio_set_level(16, 0); // spark plug pwm
         ets_delay_us(delay/frequency);
