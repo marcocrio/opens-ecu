@@ -130,10 +130,10 @@ void app_main(void)
     TaskHandle_t xHandle;
  
  //--------------------Tasks registration--------------------//
-    xTaskCreatePinnedToCore(&pwm_signals, "pwm_signals", 2048, NULL, 5, NULL,1);//&xHandle_pwm); 
+    xTaskCreatePinnedToCore(&pwm_signals, "pwm_signals", 2048, NULL, 3, NULL,1);//&xHandle_pwm); 
     //xTaskCreate(&calc_display, "calc_display", 2048, NULL, 5, NULL);//&xHandle_calcdisplay);
     //xTaskCreatePinnedToCore(&deb, "pwm_debugging",2048, NULL, 5, NULL,1);//&xHandle_pwmbug);
-    xTaskCreatePinnedToCore(&main_Readings, "main_Readings", 2048, NULL, 5, &xHandle,0);//&xHandle_Readings);
+    xTaskCreatePinnedToCore(&main_Readings, "main_Readings", 8000, NULL, 5, NULL,0);//&xHandle_Readings);
 //--------------------Tasks registration--------------------//
 
     //xTaskCreate(&pwm_signals, "pwm_signals", 1024, NULL, 5, NULL); 

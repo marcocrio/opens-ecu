@@ -80,9 +80,9 @@ void deb(){
 
     while(1)
     {
-    TIMERG0.wdt_wprotect=TIMG_WDT_WKEY_VALUE;
-    TIMERG0.wdt_feed=1;
-    TIMERG0.wdt_wprotect=0;
+    // TIMERG0.wdt_wprotect=TIMG_WDT_WKEY_VALUE;
+    // TIMERG0.wdt_feed=1;
+    // TIMERG0.wdt_wprotect=0;
     TPS= 5;
     printf("\nFrequency: %.2f\nDuty: %.2f\n\n",readings_buff[Freqb],readings_buff[DutyCicleb]);
 
