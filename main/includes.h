@@ -11,6 +11,7 @@
 #include "freertos/queue.h"
 #include "freertos/event_groups.h"
 #include "freertos/FreeRTOSConfig.h"
+#include "freertos/semphr.h"
 
 
 //standard esp
@@ -32,7 +33,7 @@
 #include <driver/dac.h> //Digital to Analog conversion API 
 #include "driver/ledc.h" //Pulse Width Mmodulation API
 
-
+extern SemaphoreHandle_t xSemaphore;
 
 //-----------------Constans-----------------// 
 

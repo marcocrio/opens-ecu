@@ -24,16 +24,12 @@
 //Calculations
 #include "lib/calculations/calc.h"
 
-
+const char *TAG = "task";
 
 
 // ================== Global Variables Definition ==================//
    
-//-----------------LOG Constans----------------//
-
-
-    // static const char *SNTP = "SNTP";
-
+SemaphoreHandle_t xSemaphore = NULL;
 
 //-----------------Constans-----------------// 
 
@@ -72,6 +68,8 @@ RTC_DATA_ATTR static int boot_count = 0;
 
 
 
+
+
 //*****************************************************************************************//
 //*****************************************************************************************//
 //************************************** MAIN *********************************************//
@@ -93,21 +91,21 @@ void app_main(void)
 
     
     vfsSetup(); //initializes Virtual File System
-    esp_task_wdt_init(30,0);// Watchdog timer settings. it lasts 30 seconds and the 0 indicates that there will not be error.
+    // esp_task_wdt_init(30,0);// Watchdog timer settings. it lasts 30 seconds and the 0 indicates that there will not be error.
     rdfile();
     setADC();
 
 
+//--------------------Tasks registration--------------------//
 
- //--------------------Tasks registration--------------------//
-
-    xTaskCreate(&pwm_signals, "pwm_signals", 2048, NULL, 5, NULL); 
+    xTaskCreate(&pwm_signals, "pwm_signals", 1024, NULL, 6, NULL); 
     xTaskCreate(&main_Readings, "main_Readings", 2048, NULL, 5, NULL);
-    xTaskCreate(&calc_display, "calc_display", 1024, NULL, 6, NULL);
+    xTaskCreate(&calc_display, "calc_display", 2048, NULL, 4, NULL);
 
 //----------------------- NVS init ------------------------//
+    
 
-
+    
     initialize_nvs();
 
     #if CONFIG_STORE_HISTORY
@@ -126,9 +124,9 @@ void app_main(void)
     esp_console_register_help_command();
     // register_system();
     register_file();
-
+    // register_system();
 
     // consoleRun();
 
-    
+
 }
