@@ -29,9 +29,7 @@ const char *TAG = "task";
 
 // ================== Global Variables Definition ==================//
    
-//-----------------LOG Constans----------------//
-
-
+SemaphoreHandle_t xSemaphore = NULL;
 
 //-----------------Constans-----------------// 
 
