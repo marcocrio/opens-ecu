@@ -1,4 +1,4 @@
-/* Console example
+/* Open source Electronic Control Module
    This example code is in the Public Domain (or CC0 licensed, at your option.)
    Unless required by applicable law or agreed to in writing, this
    software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
@@ -31,8 +31,6 @@ const char *TAG = "task";
    
 //-----------------LOG Constans----------------//
 
-
-    // static const char *SNTP = "SNTP";
 
 
 //-----------------Constans-----------------// 
@@ -121,30 +119,22 @@ void app_main(void)
 
     
     vfsSetup(); //initializes Virtual File System
-    esp_task_wdt_init(30,0);// Watchdog timer settings. it lasts 30 seconds and the 0 indicates that there will not be error.
+    // esp_task_wdt_init(30,0);// Watchdog timer settings. it lasts 30 seconds and the 0 indicates that there will not be error.
     rdfile();
     setADC();
 
  //------------------- Task Handler -------------------------//
 
-    TaskHandle_t xHandle;
- 
- //--------------------Tasks registration--------------------//
-    xTaskCreatePinnedToCore(&pwm_signals, "pwm_signals", 2048, NULL, 3, NULL,1);//&xHandle_pwm); 
-    //xTaskCreate(&calc_display, "calc_display", 2048, NULL, 5, NULL);//&xHandle_calcdisplay);
-    //xTaskCreatePinnedToCore(&deb, "pwm_debugging",2048, NULL, 5, NULL,1);//&xHandle_pwmbug);
-    xTaskCreatePinnedToCore(&main_Readings, "main_Readings", 8000, NULL, 5, NULL,0);//&xHandle_Readings);
 //--------------------Tasks registration--------------------//
 
-    //xTaskCreate(&pwm_signals, "pwm_signals", 1024, NULL, 5, NULL); 
-    //xTaskCreate(&main_Readings, "main_Readings", 2048, NULL, 5, NULL);
-    //xTaskCreate(&calc_display, "calc_display", 2048, NULL, 5, NULL);
+    xTaskCreate(&pwm_signals, "pwm_signals", 1024, NULL, 6, NULL); 
+    xTaskCreate(&main_Readings, "main_Readings", 2048, NULL, 5, NULL);
+    xTaskCreate(&calc_display, "calc_display", 2048, NULL, 4, NULL);
 
 //----------------------- NVS init ------------------------//
     
-    tasks_info();
-    
 
+    
     initialize_nvs();
 
     #if CONFIG_STORE_HISTORY
@@ -166,12 +156,6 @@ void app_main(void)
     // register_system();
 
     // consoleRun();
-
-    
-
-
-
-
 
 
 }

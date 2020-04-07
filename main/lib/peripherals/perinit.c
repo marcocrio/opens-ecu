@@ -7,7 +7,6 @@
 
 // push confirmation
 
-
 //*****************************************************************************************//
 //*****************************************************************************************//
 //************************************* ADC Setup *****************************************//
@@ -33,7 +32,6 @@ void pwm_signals(void *pvParameter) // square wave signals for injector and spar
     
     gpio_pad_select_gpio(2);
     gpio_pad_select_gpio(16);
-    esp_task_wdt_add(NULL);// subscription to WDT
 
     /* Set the GPIO as a push/pull output */
     gpio_set_direction(2,GPIO_MODE_OUTPUT);
@@ -65,7 +63,7 @@ void pwm_signals(void *pvParameter) // square wave signals for injector and spar
 
         printf("\nFrequency: %.2f\nDuty: %.2f\n\n",readings_buff[Freqb],readings_buff[DutyCicleb]);
         
-        esp_task_wdt_reset();
+        vTaskDelay(2);
     }
 };
 
