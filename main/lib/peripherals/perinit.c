@@ -28,11 +28,11 @@ void setADC()
 void pwm_signals(void *pvParameter) // square wave signals for injector and spark plug
 {    
     
-    gpio_pad_select_gpio(2);
+    gpio_pad_select_gpio(4);
     gpio_pad_select_gpio(16);
 
     /* Set the GPIO as a push/pull output */
-    gpio_set_direction(2,GPIO_MODE_OUTPUT);
+    gpio_set_direction(4,GPIO_MODE_OUTPUT);
     gpio_set_direction(16,GPIO_MODE_OUTPUT);
 
         int freq = 1; // frequency in hz
@@ -45,11 +45,11 @@ void pwm_signals(void *pvParameter) // square wave signals for injector and spar
 
     while(1) 
     {
-        gpio_set_level(2, 1);
+        gpio_set_level(4, 1);
         gpio_set_level(16, 0);
         ets_delay_us(delay/freq);
        
-        gpio_set_level(2, 0);
+        gpio_set_level(4, 0);
         gpio_set_level(16, 1);
         ets_delay_us(delay_inv/freq);
         
