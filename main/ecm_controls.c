@@ -91,16 +91,17 @@ void app_main(void)
 
     
     vfsSetup(); //initializes Virtual File System
-    // esp_task_wdt_init(30,0);// Watchdog timer settings. it lasts 30 seconds and the 0 indicates that there will not be error.
-    rdfile();
-    setADC();
+    rdfile(); //reads VE table and brings it to registers
+    setADC(); //sets up ADC
+    initialize_console();// initializes uart and console
 
 
 //--------------------Tasks registration--------------------//
 
     xTaskCreate(&pwm_signals, "pwm_signals", 1024, NULL, 6, NULL); 
     xTaskCreate(&main_Readings, "main_Readings", 2048, NULL, 5, NULL);
-    xTaskCreate(&calc_display, "calc_display", 2048, NULL, 4, NULL);
+    // xTaskCreate(&calc_display, "calc_display", 2048, NULL, 4, NULL);
+    xTaskCreate(&olcmds, "olcmds",4*1024, NULL,5,NULL);
 
 //----------------------- NVS init ------------------------//
     
@@ -118,7 +119,7 @@ void app_main(void)
 
 //----------------- Command registration ------------------//
 
-    initialize_console();
+    
 
     /* Register commands */
     esp_console_register_help_command();

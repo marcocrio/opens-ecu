@@ -11,9 +11,17 @@
 #include "nvs_flash.h"
 
 
+//ol uart
+#include <sys/fcntl.h>
+#include <sys/errno.h>
+#include <sys/unistd.h>
+#include <sys/select.h>
+#include "esp_vfs.h"
+#include "esp_vfs_dev.h"
 
 
 const char* FS = "FATFS";
+static const char* OL = "ol_uart";
 
 
 //---------------------- FATFS ---------------------//
@@ -94,7 +102,7 @@ void initialize_console(void)
     };
     /* Install UART driver for interrupt-driven reads and writes */
     ESP_ERROR_CHECK( uart_driver_install(CONFIG_ESP_CONSOLE_UART_NUM,
-            256, 0, 0, NULL, 0) );
+            2*1024, 0, 0, NULL, 0) );
     ESP_ERROR_CHECK( uart_param_config(CONFIG_ESP_CONSOLE_UART_NUM, &uart_config) );
 
     /* Tell VFS to use UART driver */
@@ -215,3 +223,120 @@ void consoleRun(){
 //*****************************************************************************************//
 
 
+void olcmds(void *pvParameter){
+
+    while (1) {
+        int fd;
+
+        if ((fd = open("/dev/uart/0", O_RDWR)) == -1) {
+            ESP_LOGE(OL, "Cannot open UART");
+            vTaskDelay(5000 / portTICK_PERIOD_MS);
+            continue;
+        }
+
+        // We have a driver now installed so set up the read/write functions to use driver also.
+        esp_vfs_dev_uart_use_driver(0);
+
+        while (1) {
+            int s;
+            fd_set rfds;
+            struct timeval tv = {
+                .tv_sec = 5,
+                .tv_usec = 0,
+            };
+
+            FD_ZERO(&rfds);
+            FD_SET(fd, &rfds);
+
+            s = select(fd + 1, &rfds, NULL, NULL, &tv);
+
+            if (s < 0) {
+                ESP_LOGE(OL, "Select failed: errno %d", errno);
+                break;
+            } else if (s == 0) {
+                ESP_LOGI(OL, "Timeout has been reached and nothing has been received");
+            } else {
+                if (FD_ISSET(fd, &rfds)) {
+                    char buf[16];
+
+                    if (read(fd, &buf, 16) > 0) {
+                        ESP_LOGI(OL, "Received: %c", buf);
+                        // Note: Only one character was read even the buffer contains more. The other characters will
+                        // be read one-by-one by subsequent calls t o select() which will then return immediately
+                        // without timeout.
+                    } else {
+                        ESP_LOGE(OL, "UART read error");
+                        break;
+                    }
+                } else {
+                    ESP_LOGE(OL, "No FD has been set in select()");
+                    break;
+                }
+            }
+        }
+
+        close(fd);
+    }
+
+    vTaskDelete(NULL);
+
+}
+
+
+// void olcmds(void *pvParameter){
+
+//     while (1) {
+//         int fd;
+
+//         if ((fd = open("/dev/uart/0", O_RDWR)) == -1) {
+//             ESP_LOGE(OL, "Cannot open UART");
+//             vTaskDelay(5000 / portTICK_PERIOD_MS);
+//             continue;
+//         }
+
+//         // We have a driver now installed so set up the read/write functions to use driver also.
+//         esp_vfs_dev_uart_use_driver(0);
+
+//         while (1) {
+//             int s;
+//             fd_set rfds;
+//             struct timeval tv = {
+//                 .tv_sec = 5,
+//                 .tv_usec = 0,
+//             };
+
+//             FD_ZERO(&rfds);
+//             FD_SET(fd, &rfds);
+
+//             s = select(fd + 1, &rfds, NULL, NULL, &tv);
+
+//             if (s < 0) {
+//                 ESP_LOGE(OL, "Select failed: errno %d", errno);
+//                 break;
+//             } else if (s == 0) {
+//                 ESP_LOGI(OL, "Timeout has been reached and nothing has been received");
+//             } else {
+//                 if (FD_ISSET(fd, &rfds)) {
+//                     char buf;
+//                     if (read(fd, &buf, 1) > 0) {
+//                         ESP_LOGI(OL, "Received: %c", buf);
+//                         // Note: Only one character was read even the buffer contains more. The other characters will
+//                         // be read one-by-one by subsequent calls to select() which will then return immediately
+//                         // without timeout.
+//                     } else {
+//                         ESP_LOGE(OL, "UART read error");
+//                         break;
+//                     }
+//                 } else {
+//                     ESP_LOGE(OL, "No FD has been set in select()");
+//                     break;
+//                 }
+//             }
+//         }
+
+//         close(fd);
+//     }
+
+//     vTaskDelete(NULL);
+
+// }
