@@ -96,7 +96,7 @@ void main_Readings(void *pvParameter)
         // printf("Injecor Pulse Time: %.4fms\n",injPulseTime);
         // printf("Injector Duty Cyle: %.4f\n\n",injDuty);
 
-        vTaskDelay( 2 );
+        vTaskDelay( 2 ); // must be 0.5 in order to synchronize
     }
 }
 
@@ -123,7 +123,7 @@ void calc_display(void *pvParameter){
         printf("fuelmass: %.4f (g/cyl)\n\n",fuelmass); 
         printf("Frequency: %.4f\n",freq);
         // printf("Injecor Pulse Time: %.4fms\n",injPulseTime);
-        printf("Injector Duty Cyle: %.4f\n\n",injDuty);
+        printf("Injector Duty Cyle: %.4f",injDuty);
 
         
         // ets_delay_us(10); //sincronizes main reading task and CKP signal creation

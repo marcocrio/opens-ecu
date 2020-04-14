@@ -53,7 +53,7 @@ const char *TAG = "task";
     float afr=14.7; //airfuel ratio (**needs to be improved, get from tables from book)  
 
     //Fuel Injector
-    float freq;
+    float freq = 1;
     float injDuty;
     float injPulseTime;
     float injCycle;
@@ -114,6 +114,8 @@ void app_main(void)
     ++boot_count;
     ESP_LOGI(SYS, "Boot count: %d\n\n", boot_count);
 
+    tasks_info();
+
 
 //---------------------- Peripherals ----------------------//
 
@@ -123,13 +125,13 @@ void app_main(void)
     rdfile();
     setADC();
 
- //------------------- Task Handler -------------------------//
-
 //--------------------Tasks registration--------------------//
 
     xTaskCreate(&pwm_signals, "pwm_signals", 2048, NULL, 6, NULL); 
     xTaskCreate(&main_Readings, "main_Readings", 2048, NULL, 5, NULL);
     xTaskCreate(&calc_display, "calc_display", 2048, NULL, 4, NULL);
+    xTaskCreate(&deb, "pwm_debugging", 2048, NULL, 4, NULL);
+    xTaskCreate(&PulseCounter, "pulse_counter", 2048, NULL, 4, NULL);
 
 //----------------------- NVS init ------------------------//
     

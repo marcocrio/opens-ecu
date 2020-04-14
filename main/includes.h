@@ -8,6 +8,7 @@
 //standard freeRTOS
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "freertos/portmacro.h"
 #include "freertos/queue.h"
 #include "freertos/event_groups.h"
 #include "freertos/FreeRTOSConfig.h"
@@ -17,6 +18,9 @@
 #include "esp_int_wdt.h"    //watchdog timer
 #include "esp_task_wdt.h"   //watchdog timer
 #include "driver/gpio.h"
+#include "driver/pcnt.h"
+#include "driver/periph_ctrl.h"
+#include "esp_attr.h"
 #include "esp_log.h"
 #include "esp_err.h"
 
@@ -71,3 +75,4 @@
     #define DutyCicleb 8
     
     extern int flag;
+
