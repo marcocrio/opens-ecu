@@ -13,9 +13,9 @@
 xQueueHandle pcnt_evt_queue;   // A queue to handle pulse counter events
 pcnt_isr_handle_t user_isr_handle = NULL; //user's ISR service handle
 
-/* A sample structure to pass events from the PCNT
- * interrupt handler to the main program.
- */
+// /* A sample structure to pass events from the PCNT
+//  * interrupt handler to the main program.
+//  */
 typedef struct {
     int unit;  // the PCNT unit that originated an interrupt
     uint32_t status; // information on the event type that caused the interrupt
@@ -176,29 +176,29 @@ void PulseCounter(void *pvParameter)
          * Once received, decode the event type and print it on the serial monitor.
          */
         res = xQueueReceive(pcnt_evt_queue, &evt, 1000 / portTICK_PERIOD_MS);
-        // if (res == pdTRUE) {
-        //     pcnt_get_counter_value(PCNT_TEST_UNIT, &count);
-        //     printf("Event PCNT unit[%d]; cnt: %d\n", evt.unit, count);
-        //     if (evt.status & PCNT_EVT_THRES_1) {
-        //         printf("THRES1 EVT\n");
-        //     }
-        //     if (evt.status & PCNT_EVT_THRES_0) {
-        //         printf("THRES0 EVT\n");
-        //     }
-        //     if (evt.status & PCNT_EVT_L_LIM) {
-        //         printf("L_LIM EVT\n");
-        //     }
-        //     if (evt.status & PCNT_EVT_H_LIM) {
-        //         printf("H_LIM EVT\n");
-        //     }
-        //     if (evt.status & PCNT_EVT_ZERO) {
-        //         printf("ZERO EVT\n");
-        //     }
-        // } else {
+        if (res == pdTRUE) {
+            pcnt_get_counter_value(PCNT_TEST_UNIT, &count);
+            printf("Event PCNT unit[%d]; cnt: %d\n", evt.unit, count);
+            if (evt.status & PCNT_EVT_THRES_1) {
+                printf("THRES1 EVT\n");
+            }
+            if (evt.status & PCNT_EVT_THRES_0) {
+                printf("THRES0 EVT\n");
+            }
+            if (evt.status & PCNT_EVT_L_LIM) {
+                printf("L_LIM EVT\n");
+            }
+            if (evt.status & PCNT_EVT_H_LIM) {
+                printf("H_LIM EVT\n");
+            }
+            if (evt.status & PCNT_EVT_ZERO) {
+                printf("ZERO EVT\n");
+            }
+        } else {
             pcnt_get_counter_value(PCNT_TEST_UNIT, &count);
             printf("\n-----------------\nCurrent counter value :%d\n-----------------\n", count);
-            // vTaskDelay(500/portTICK_PERIOD_MS);
-        //}
+            vTaskDelay(500/portTICK_PERIOD_MS);
+        }
     }
     if(user_isr_handle) {
         //Free the ISR service handle.

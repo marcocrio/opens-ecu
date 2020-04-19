@@ -18,11 +18,11 @@
 #include "esp_int_wdt.h"    //watchdog timer
 #include "esp_task_wdt.h"   //watchdog timer
 #include "driver/gpio.h"
-#include "driver/pcnt.h"
 #include "driver/periph_ctrl.h"
 #include "esp_attr.h"
 #include "esp_log.h"
 #include "esp_err.h"
+#include "esp_system.h"
 
 
 //console
@@ -35,7 +35,8 @@
 #include <driver/adc.h> //Analog to Digital Convertion API
 #include <driver/dac.h> //Digital to Analog conversion API 
 #include "driver/ledc.h" //Pulse Width Mmodulation API
-
+#include "driver/pcnt.h" // Pulse Count API
+#include "driver/rmt.h" // Remote Control API
 
 //-----------------Constans-----------------// 
 
