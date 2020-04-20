@@ -121,7 +121,7 @@ void calc_display(void *pvParameter){
         printf("Volumetric Efficiency: %.2f\n",VE_Value);
         printf("airmass: %.4f (g/cyl)\n",airmass);
         printf("fuelmass: %.4f (g/cyl)\n\n",fuelmass); 
-        printf("Frequency: %.4f\n",freq);
+        printf("Frequency: %.4f\n",frequency_hz);
         // printf("Injecor Pulse Time: %.4fms\n",injPulseTime);
         printf("Injector Duty Cyle: %.4f\n",injDuty);
 

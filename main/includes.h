@@ -1,4 +1,5 @@
 //standard C
+#include <stdint.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -77,3 +78,5 @@
     
     extern int flag;
 
+    //Frequency
+    extern double frequency_hz;
