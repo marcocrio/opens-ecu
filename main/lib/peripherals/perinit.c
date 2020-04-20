@@ -1,6 +1,9 @@
 #include "includes.h"
 #include "perinit.h"
 
+#include "soc/timer_group_struct.h"
+#include "soc/timer_group_reg.h"
+
 #ifdef INCLUDE_ESP_IDF_VERSION_H
 # include "esp_idf_version.h"
 #endif
@@ -11,6 +14,7 @@
 #if (ESP_IDF_VERSION_MAJOR == 4)
 # define RMT_MEM_BLOCK_BYTE_NUM ((SOC_RMT_CHANNEL_MEM_WORDS) * 4)
 #endif
+
 
 // #define PCNT_TEST_UNIT      PCNT_UNIT_0
 // #define PCNT_H_LIM_VAL      10
@@ -56,6 +60,7 @@ void setADC()
 
 void pwm_signals(void *pvParameter) // square wave signals for injector and spark plug
 {    
+
     
     gpio_pad_select_gpio(2);
     gpio_pad_select_gpio(16);
@@ -74,6 +79,9 @@ void pwm_signals(void *pvParameter) // square wave signals for injector and spar
  
     while(1) 
     {
+        TIMERG0.wdt_wprotect=TIMG_WDT_WKEY_VALUE;
+        TIMERG0.wdt_feed=1;
+        TIMERG0.wdt_wprotect=0;
         if(frequency_hz == 0)
         {
             frequency_hz = 1;
@@ -98,7 +106,7 @@ void pwm_signals(void *pvParameter) // square wave signals for injector and spar
         ets_delay_us(delay_inv/frequency);
         
         //printf("\n ------- Test_Frequency = %d -------- \n",frequency);
-        vTaskDelay(0.9);
+        //vTaskDelay(10/portTICK_PERIOD_MS);
     }
 };
 
