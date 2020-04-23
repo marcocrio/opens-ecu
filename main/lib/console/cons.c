@@ -20,6 +20,7 @@
 #include "esp_vfs_dev.h"
 
 
+
 const char* FS = "FATFS";
 static const char* OL = "ol_uart";
 
@@ -261,16 +262,12 @@ void olcmds(void *pvParameter){
                 if (FD_ISSET(fd, &rfds)) {
                     char buf;
                     if (read(fd, &buf, 1) > 0) {
-                        // ESP_LOGI(OL, "Received: %c", buf);
-                        // Note: Only one character was read even the buffer contains more. The other characters will
-                        // be read one-by-one by subsequent calls to select() which will then return immediately
-                        // without timeout.
-                        printf("%c",buf);
-                        // if(buf == 13){
-                        //     printf("%c",buf);
-                        // }else{
-                        //     printf("%c",buf);
-                        // }
+                        if(buf == 'd' || buf == 'D'){
+                            printf("Displaying data...\n");
+
+                        }else if(buf == 'c' || buf =='C'){
+                            printf("Entering Console mode...\n");
+                        }
 
                     } else {
                         ESP_LOGE(OL, "UART read error");

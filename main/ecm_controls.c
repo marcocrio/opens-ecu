@@ -29,7 +29,8 @@ const char *TAG = "task";
 
 // ================== Global Variables Definition ==================//
    
-SemaphoreHandle_t xSemaphore = NULL;
+SemaphoreHandle_t xMutex;
+
 
 //-----------------Constans-----------------// 
 
@@ -57,7 +58,6 @@ SemaphoreHandle_t xSemaphore = NULL;
     float injCycle;
 
 
-
 //------------------------DAQ------------------------//
 
 /* Variable holding number of times ESP32 restarted since first boot.
@@ -65,8 +65,6 @@ SemaphoreHandle_t xSemaphore = NULL;
 * maintains its value when ESP32 wakes from deep sleep.
 */
 RTC_DATA_ATTR static int boot_count = 0;
-
-
 
 
 
@@ -79,6 +77,21 @@ RTC_DATA_ATTR static int boot_count = 0;
 void app_main(void) 
 {
     
+//----------------------- NVS init ------------------------//
+    
+
+    
+    initialize_nvs();
+
+    #if CONFIG_STORE_HISTORY
+        initialize_filesystem();
+        ESP_LOGI(FS, "Command history enabled");
+    #else
+        ESP_LOGI(FS, "Command history disabled");
+    #endif
+
+
+
 //----------------------- Boot count ------------------------//
     
     printf("\n\n");
@@ -94,32 +107,22 @@ void app_main(void)
     rdfile(); //reads VE table and brings it to registers
     setADC(); //sets up ADC
     initialize_console();// initializes uart and console
+    // xMutex = xSemaphoreCreateMutex();
+
+
 
 
 //--------------------Tasks registration--------------------//
 
-    xTaskCreate(&pwm_signals, "pwm_signals", 1024, NULL, 6, NULL); 
+    xTaskCreate(&pwm_signals, "pwm_signals", 1024, NULL, 5, NULL); 
     xTaskCreate(&main_Readings, "main_Readings", 2048, NULL, 5, NULL);
-    // xTaskCreate(&calc_display, "calc_display", 2048, NULL, 4, NULL);
     xTaskCreate(&olcmds, "olcmds",4*1024, NULL,5,NULL);
+    xTaskCreate(&calc_display, "calc_display", 4*2048, NULL, 5, NULL);
 
-//----------------------- NVS init ------------------------//
-    
 
-    
-    initialize_nvs();
-
-    #if CONFIG_STORE_HISTORY
-        initialize_filesystem();
-        ESP_LOGI(FS, "Command history enabled");
-    #else
-        ESP_LOGI(FS, "Command history disabled");
-    #endif
 
 
 //----------------- Command registration ------------------//
-
-    
 
     /* Register commands */
     esp_console_register_help_command();
@@ -128,6 +131,7 @@ void app_main(void)
     // register_system();
 
     // consoleRun();
+
 
 
 }

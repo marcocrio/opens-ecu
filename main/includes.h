@@ -33,8 +33,7 @@
 #include <driver/dac.h> //Digital to Analog conversion API 
 #include "driver/ledc.h" //Pulse Width Mmodulation API
 
-extern SemaphoreHandle_t xSemaphore;
-
+extern SemaphoreHandle_t xMutex;
 //-----------------Constans-----------------// 
 
     extern const float Vengine; //VE Engine Constant ()
