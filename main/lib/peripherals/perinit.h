@@ -16,7 +16,7 @@ void pwm_signals(void *pvParameter);
 void perinit_display(void *pvParameter);
 void IRAM_ATTR pcnt_example_intr_handler(void *arg);
 void pcnt_example_init(void);
-void PulseCounter(void *pvParameter);
+void motor_signal(void *pvParameter);
 
 
 typedef struct

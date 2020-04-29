@@ -1,3 +1,4 @@
+
 #include "includes.h"
 #include "perinit.h"
 
@@ -107,6 +108,39 @@ void pwm_signals(void *pvParameter) // square wave signals for injector and spar
         
         //printf("\n ------- Test_Frequency = %d -------- \n",frequency);
         //vTaskDelay(10/portTICK_PERIOD_MS);
+    }
+};
+
+void motor_signal(void *pvParameter) // square wave signals for injector and spark plug
+{    
+    gpio_pad_select_gpio(21);
+ 
+    /* Set the GPIO as a push/pull output */
+    gpio_set_direction(21,GPIO_MODE_OUTPUT);
+
+    float DutyPer;
+    float invPer;
+    int motordelay;
+    int complement_delay;
+ 
+    while(1) 
+    {
+        
+        TIMERG1.wdt_wprotect=TIMG_WDT_WKEY_VALUE;
+        TIMERG1.wdt_feed=1;
+        TIMERG1.wdt_wprotect=0;
+
+        invPer = 100 - TPS_Percentage;
+        
+        gpio_set_level(21, 1);
+        ets_delay_us(500);
+       
+       
+        gpio_set_level(21, 0);
+        ets_delay_us(500);
+        
+        //printf("\n ------- Test_Frequency = %d -------- \n",frequency);
+        // vTaskDelay(1);
     }
 };
 
@@ -435,4 +469,6 @@ void frequency_count_task_function(void * pvParameter)
     free(task_inputs);  // TODO: avoid this if not dynamically allocated
     vTaskDelete(NULL);
 }
+
+
 

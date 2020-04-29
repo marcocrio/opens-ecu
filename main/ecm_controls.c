@@ -33,7 +33,7 @@ const char *TAG = "task";
 
 #define TAG "app"
 
-#define GPIO_SIGNAL_INPUT (14)
+#define GPIO_SIGNAL_INPUT (34)
 #define GPIO_RMT_GATE     (12)
 //#define GPIO_LED          (2) //CONFIG_LED_GPIO)
 
@@ -49,14 +49,14 @@ const char *TAG = "task";
 //#define RMT_CLK_DIV       20    // results in 0.25us steps (80MHz / 20 = 4 MHz
 //#define RMT_CLK_DIV       1     // results in 25ns steps (80MHz / 2 / 1 = 40 MHz)
 
-#define SAMPLE_PERIOD 0.5  // seconds
+#define SAMPLE_PERIOD 1  // seconds
 
 // The counter is signed 16-bit, so maximum positive value is 32767
 // The filter is unsigned 10-bit, maximum value is 1023. Use full period of maximum frequency.
 // For higher expected frequencies, the sample period and filter must be reduced.
 
 // suitable up to 16,383.5 Hz
-#define WINDOW_DURATION 0.5  // seconds
+#define WINDOW_DURATION 1  // seconds
 #define FILTER_LENGTH 1023  // APB @ 80MHz, limits to < 39,100 Hz
 
 static void window_start_callback(void)
@@ -86,10 +86,13 @@ static void frequency_callback(double hz)
     const int cylinder= 1; // **pending change to cylynders
     const float staticFlow= 10; // 10g/ms from Injector Datasheet
     const float openTime= 0.9 ;//The time in takes for the injector to be fully opened
+    // const int atmospheric = 101; // Standard atmospheric pressure in kpa
+    // const float MFM = 0.039; // maximum fuel mass
 
 
 //-----------------Sensors------------------//
     int TPS; //TPS adc readgins 
+    // int TPS_ADC;//TPS ADC Value
     float IAT = 311; //Air temperature in kelvin
     float TPSV;//TPS Voltage
     float pressure; //Barometric Pressure (hPa)
@@ -193,8 +196,9 @@ void app_main(void)
     xTaskCreate(&main_Readings, "main_Readings", 2048, NULL, 5, NULL);
     xTaskCreate(&calc_display, "calc_display", 2048, NULL, 4, NULL);
     //xTaskCreate(&deb, "pwm_debugging", 2048, NULL, 4, NULL);
-    //xTaskCreate(&PulseCounter, "pulse_counter", 2048, NULL, 4, NULL);
+    //xTaskCreate(&motor_signal, "motor_signal", 2048, NULL, 4, NULL);
     xTaskCreate(&frequency_count_task_function,"frequency_count_task",4096,config,4,NULL);
+    
 //----------------------- NVS init ------------------------//
     
 
